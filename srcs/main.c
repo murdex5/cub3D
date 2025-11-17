@@ -14,6 +14,10 @@
 
 int	main(int argc, char *argv[])
 {
-	ft_putstr_fd("Hello wIorld\n", 0);
+	if (argc != 2)
+    {
+        ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1);
+    }
+    printf("%s\n", argv[1]);
 	return (0);
 }
