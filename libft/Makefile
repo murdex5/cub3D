@@ -10,38 +10,84 @@
 #                                                                              #
 # **************************************************************************** #
 
-PRINTF_SRC_DIR = ../ft_printf
-GNL_SRC_DIR = ../get_next_line
 
-SRCS		= ft_atoi.c  ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_putnbr_base.c \
-			  ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-			  ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+# =========================
+# Color and Formatting
+# =========================
+ifneq (,$(findstring xterm,${TERM}))
+	BOLD    := \033[1m
+	GREEN   := \033[32m
+	BLUE    := \033[34m
+	CYAN    := \033[36m
+	YELLOW  := \033[33m
+	RED     := \033[31m
+	RESET   := \033[0m
+	CHECK   := ✓
+	WRENCH  := 🛠 
+	LIB     := 📦
+	CLEAN   := ♻
+else
+	BOLD    := ""
+	GREEN   := ""
+	BLUE    := ""
+	CYAN    := ""
+	YELLOW  := ""
+	RED     := ""
+	RESET   := ""
+	CHECK   := "[✓]"
+	WRENCH  := "[*]"
+	LIB     := "[lib]"
+	CLEAN   := "[clean]"
+endif
 
-SRC_PRINTF = $(PRINTF_SRC_DIR)/utils0.c $(PRINTF_SRC_DIR)/utils1.c $(PRINTF_SRC_DIR)/utils2.c $(PRINTF_SRC_DIR)/utils3.c $(PRINTF_SRC_DIR)/utils4.c \
-			 $(PRINTF_SRC_DIR)/printf_utils.c $(PRINTF_SRC_DIR)/ft_printf.c 
+# =========================
+# Project Configuration
+# =========================
+NAME        := libft.a
+CC          := gcc
+CFLAGS      := -Wall -Wextra -Werror
+SRC_COUNT   := $(words $(SRCS))
 
-SRC_GNL = $(GNL_SRC_DIR)/get_next_line.c $(GNL_SRC_DIR)/get_next_line_bonus.c
+# =========================
+# Source Files
+# =========================
+SRCS        := \
+	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
+	ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c \
+	ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c \
+	ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c ft_strchr.c \
+	ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c ft_strlcpy.c \
+	ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
+	ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_putnbr_base.c \
+	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
+	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
-OBJS		= ${SRCS:.c=.o}
-OBJS_PRINTF = ${SRC_PRINTF:.c=.o}
-OBJS_GNL	= ${SRC_GNL:.c=.o}
-NAME		= libft.a
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror
+OBJS        := $(SRCS:.c=.o)
 
-$(NAME): $(OBJS) $(OBJS_PRINTF) $(OBJS_GNL)
-	ar rcs $(NAME) $(OBJS) $(OBJS_PRINTF) $(OBJS_GNL)
-
+# =========================
+# Build Targets
+# =========================
 all: $(NAME)
+	@printf "$(GREEN)$(CHECK) $(BOLD)Libft compilation complete$(RESET)\n"
 
+$(NAME): $(OBJS)
+	@printf "$(BLUE)$(LIB) Creating $(NAME)...$(RESET)\n"
+	@ar rcs $(NAME) $(OBJS)
+	@printf "$(GREEN)$(CHECK) $(BOLD)%d files compiled into $(NAME)$(RESET)\n" $(words $(OBJS))
+
+# Silent compilation rule (no per-file output)
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@printf "$(CYAN)$(WRENCH) Compiled %-20s$(RESET)\r" $(notdir $<)
 
 clean:
-	rm -f $(OBJS) $(OBJS_PRINTF) $(OBJS_GNL)
+	@printf "$(YELLOW)$(CLEAN) Cleaning object files...$(RESET)\n"
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@printf "$(RED)$(CLEAN) Removing $(NAME)...$(RESET)\n"
+	@rm -f $(NAME)
+	@printf "$(GREEN)$(CHECK) $(BOLD)Libft fully cleaned!$(RESET)\n"
 
 re: fclean all
 
