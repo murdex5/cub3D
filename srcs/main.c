@@ -12,8 +12,8 @@
 
 #include "../includes/cub4d.h"
 
-int main(void)
+int	main(int argc, char *argv[])
 {
-    ft_putstr_fd("Hello wIorld\n", 0);
-    return (0);
+	ft_putstr_fd("Hello wIorld\n", 0);
+	return (0);
 }
