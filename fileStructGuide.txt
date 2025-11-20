@@ -13,17 +13,10 @@ cub3D/
 │   │   └── utils_parsing.c
 │   ├── raycasting/
 │   │   ├── raycasting.c
-│   │   ├── rays.c
-│   │   ├── textures.c
-│   │   └── drawing.c
 │   ├── player/
 │   │   ├── player_init.c
-│   │   ├── movement.c
-│   │   └── rotation.c
 │   ├── graphics/
 │   │   ├── init_mlx.c
-│   │   ├── render.c
-│   │   └── hooks.c
 │   └── utils/
 │       ├── utils.c
 │       ├── errors.c
