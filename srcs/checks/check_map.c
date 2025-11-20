@@ -12,6 +12,20 @@
 
 #include "../../includes/cub3d.h"
 
+int	check_one(char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	check_surrounded(t_map *map)
 {
 	int	i;
@@ -34,6 +48,7 @@ int	check_surrounded(t_map *map)
 
 int	check_map(t_map *map)
 {
-    if (!check_surrounded(map))
-        return (err_msg_std("The map is not surrounded"), 0);
+	if (!check_surrounded(map))
+		return (err_msg_std("The map is not surrounded"), 0);
+	return (1);
 }

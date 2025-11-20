@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-int coutn_lines_arr(char **arr)
+int count_lines_arr(char **arr)
 {
     int i;
     if (!arr)
@@ -47,7 +47,7 @@ t_textures	*assign_paths(char **content, int i, t_textures *textures)
 {
 	char	**split_result;
 
-	split_result = ft_split(content[i], " ");
+	split_result = ft_split(content[i], ' ');
 	if (!split_result)
 		return (NULL);
 	if (ft_strncmp(split_result[0], "NO", ft_strlen("NO")) == 0)
@@ -78,7 +78,7 @@ t_textures	*get_tex_path(t_map *map, t_textures *textures)
 	}
 	return (textures);
 }
-t_textures	*parse_textures(char *map)
+t_textures	*parse_textures(t_map *map)
 {
 	t_textures *textures;
 

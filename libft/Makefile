@@ -60,7 +60,7 @@ SRCS        := \
 	ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
 	ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_putnbr_base.c \
 	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c get_next_line.c
 
 OBJS        := $(SRCS:.c=.o)
 

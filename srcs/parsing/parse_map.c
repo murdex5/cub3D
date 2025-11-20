@@ -75,7 +75,7 @@ int	read_map_files(t_map *map, char *file)
 		map->content[i] = ft_strdup(line);
 		free(line);
 		if (!map->content[i])
-			return (free_n_returnt(map->content, NULL, NULL), 0);
+			return (free_n_return(map->content, NULL, NULL), 0);
 		i++;
 		line = get_next_line(fd);
 	}
@@ -83,19 +83,19 @@ int	read_map_files(t_map *map, char *file)
 	return (1);
 }
 
-t_map *map_pop(t_map *map, char *path)
+t_map	*map_pop(t_map *map, char *path)
 {
-    int lines;
+	int	lines;
 
-    lines = count_lines(path);
-    map->content = ft_calloc(sizeof(char *), (lines + 1));
-    map->content[lines] = NULL;
-    if (!map->content)
-        return (printf("MEm allc fail add a free func for mapo\n"), NULL);
-    if (!read_map_files(map, path))
-        return (printf("MEm allc fail add a free func for mapo\n"), NULL);
+	lines = count_lines(path);
+	map->content = ft_calloc(sizeof(char *), (lines + 1));
+	map->content[lines] = NULL;
+	if (!map->content)
+		return (printf("MEm allc fail add a free func for mapo\n"), NULL);
+	if (!read_map_files(map, path))
+		return (printf("MEm allc fail add a free func for mapo\n"), NULL);
 	map->textures = parse_textures(map);
-    return (map);
+	return (map);
 }
 
 t_map	*parse_map(char *path)
@@ -107,7 +107,8 @@ t_map	*parse_map(char *path)
 	map = init_map();
 	if (!map)
 		return (printf("Couldn't initialize the map\n"), NULL);
-    map = map_pop(map, path);
-    if (!map)
-        return (NULL);
+	map = map_pop(map, path);
+	if (!map)
+		return (NULL);
+	return (map);
 }

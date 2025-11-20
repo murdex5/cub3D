@@ -17,7 +17,7 @@ void	free_char_arra(char **arr)
 	int	i;
 
 	if (!arr)
-		return (NULL);
+		return ;
 	i = 0;
 	while (arr[i])
 	{
@@ -25,4 +25,14 @@ void	free_char_arra(char **arr)
 		i++;
 	}
 	free(arr);
+}
+int	free_n_return(char **str, char *temp, char *msg)
+{
+	free_char_arra(str);
+	if (temp)
+		free(temp);
+	temp = NULL;
+	if (msg)
+		err_msg_std(msg);
+	return (0);
 }
