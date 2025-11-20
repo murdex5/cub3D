@@ -77,6 +77,18 @@ typedef struct s_game
 	t_player	*player;
 }				t_game;
 
+// Errors
+int				err_msg_std(char *msg);
+
+// Freees
+void	free_char_arra(char **arr);
+
+// Checks
 int				check_file_type(char *file, char *type);
+int				check_map(t_map *map);
+// Parsing
+int				count_lines(char *file);
+t_textures		*parse_textures(char *map);
+t_map			*parse_map(char *path);
 
 #endif

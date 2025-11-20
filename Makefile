@@ -12,8 +12,13 @@
 
 CC = gcc
 SRCS_DIR = ./srcs
-SRCS = 	${SRCS_DIR}/checks/checks.c \
+SRCS = 	${SRCS_DIR}/errors/errors.c \
+		${SRCS_DIR}/frees/fress.c \
+		${SRCS_DIR}/checks/check_map.c \
+		${SRCS_DIR}/checks/checks.c \
+		${SRCS_DIR}/parsiing/parse_textures.c \
 		${SRCS_DIR}/parsiing/parse_map.c \
+		${SRCS_DIR}/parsiing/parse.c \
 		${SRCS_DIR}/main/main.c
 CFLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
