@@ -1,0 +1,40 @@
+cub3D/
+├── Makefile
+├── includes/
+│   └── cub3d.h
+├── srcs/
+│   ├── main/
+│   │   └── main.c
+│   ├── parsing/
+│   │   ├── parse_map.c
+│   │   ├── parse_textures.c
+│   │   ├── parse_colors.c
+│   │   ├── validate_map.c
+│   │   └── utils_parsing.c
+│   ├── raycasting/
+│   │   ├── raycasting.c
+│   │   ├── rays.c
+│   │   ├── textures.c
+│   │   └── drawing.c
+│   ├── player/
+│   │   ├── player_init.c
+│   │   ├── movement.c
+│   │   └── rotation.c
+│   ├── graphics/
+│   │   ├── init_mlx.c
+│   │   ├── render.c
+│   │   └── hooks.c
+│   └── utils/
+│       ├── utils.c
+│       ├── errors.c
+│       └── free.c
+├── textures/
+│   ├── north_wall.xpm
+│   ├── south_wall.xpm
+│   ├── east_wall.xpm
+│   └── west_wall.xpm
+├── maps/
+│   ├── test_map.cub
+│   └── level1.cub
+└── libft/
+    ├── Makefile
