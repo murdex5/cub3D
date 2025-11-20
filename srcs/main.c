@@ -10,14 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub4d.h"
+#include "../includes/cub3d.h"
 
 int	main(int argc, char *argv[])
 {
 	if (argc != 2)
-    {
-        ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1);
-    }
-    printf("%s\n", argv[1]);
+	{
+		ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1);
+	}
+	if (!check_file_type(argv[1], ".cub"))
+		return (printf("Error \nWrong File Type\n"), 1);
+	printf("%s\n", argv[1]);
 	return (0);
 }

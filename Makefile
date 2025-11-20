@@ -12,30 +12,48 @@
 
 CC = gcc
 SRCS_DIR = ./srcs
-SRCS = ${SRCS_DIR}/main.c
+SRCS = 	${SRCS_DIR}/checks/checks.c \
+		${SRCS_DIR}/main.c
 CFLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
 OBJS = ${SRCS:.c=.o}
+
+# LIBFT	
 LIBFT_PATH = ./libft
-LIBFT_LIB = $(LIBFT_PATH)/libft.a
+LIBFT_LIB  = $(LIBFT_PATH)/libft.a
+
+# MLX
+MLX_PATH = ./mlx
+MLX_LIB	 = $(MLX_PATH)/libmlx.a
+
 NAME = cub3D
+
+ifeq ($(shell uname), Linux)
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+	MLX_INCLUDES = -I/usr/include -Imlx
+else
+	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+	MLX_INCLUDES = -I/opt/X11/include -Imlx
+endif
 
 all: subsystems $(NAME) 
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS)  $(MLX_INCLUDES) -O3 -c -o $@ $<
 
 subsystems:
 	@make -C $(LIBFT_PATH) all
+	@make -C $(MLX_PATH) all
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)
 
 fclean: clean
 	@make -C $(LIBFT_PATH) fclean
+	@make -C $(MLX_PATH) clean
 	rm -rf $(NAME)
 
 re: fclean all

@@ -10,4 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/cub3d.h"
+
+int	check_file_type(char *file, char *type)
+{
+	char	*dot;
+	int		i;
+	int		j;
+
+	dot = malloc(sizeof(char) * 5);
+	if (!dot)
+		return (0);
+	i = (int)ft_strlen(file) - 5;
+	j = -1;
+	while (file[i] != '\0')
+	{
+		dot[++j] = file[++i];
+	}
+	dot[j] = '\0';
+	if (ft_strncmp(dot, type, ft_strlen(type)) == 0)
+	{
+		free(dot);
+		return (1);
+	}
+	else
+	{
+		free(dot);
+		return (0);
+	}
+}
 

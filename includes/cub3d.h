@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub4d.h                                            :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,5 +16,9 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
+# include "../mlx/mlx.h"
+
+
+int	check_file_type(char *file, char *type);
 
 #endif
