@@ -12,15 +12,16 @@
 
 #include "../../includes/cub3d.h"
 
-int count_lines_arr(char **arr)
+int	count_lines_arr(char **arr)
 {
-    int i;
-    if (!arr)
-        return (0);
-    i = 0;
-    while (arr[i])
-        i++;
-    return (i);
+	int	i;
+
+	if (!arr)
+		return (0);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
 }
 
 t_textures	*init_textures(void)
@@ -48,15 +49,17 @@ t_textures	*assign_paths(char **content, int i, t_textures *textures)
 	char	**split_result;
 
 	split_result = ft_split(content[i], ' ');
+	if (!split_result || !split_result[0])
+		return (free_char_arra(split_result), NULL);
 	if (!split_result)
 		return (NULL);
-	if (ft_strncmp(split_result[0], "NO", ft_strlen("NO")) == 0)
+	if (ft_strcmp(split_result[0], "NO") == 0)
 		textures->north_path = ft_strdup(split_result[1]);
-	else if (ft_strncmp(split_result[0], "SO", ft_strlen("NO")) == 0)
+	else if (ft_strcmp(split_result[0], "SO") == 0)
 		textures->south_path = ft_strdup(split_result[1]);
-	else if (ft_strncmp(split_result[0], "WE", ft_strlen("NO")) == 0)
+	else if (ft_strcmp(split_result[0], "WE") == 0)
 		textures->west_path = ft_strdup(split_result[1]);
-	else if (ft_strncmp(split_result[0], "EA", ft_strlen("NO")) == 0)
+	else if (ft_strcmp(split_result[0], "EA") == 0)
 		textures->east_path = ft_strdup(split_result[1]);
 	free_char_arra(split_result);
 	return (textures);
@@ -73,7 +76,12 @@ t_textures	*get_tex_path(t_map *map, t_textures *textures)
 	i = 0;
 	while (i < lines)
 	{
-		assign_paths(content, i, textures);
+		printf("Parsing line %d: %s\n", i, content[i]);
+		if (!check_if_null_text(textures))
+		{
+			if (!assign_paths(content, i, textures))
+				return (err_msg_std("Parsing path failed"), NULL);
+		}
 		i++;
 	}
 	return (textures);
@@ -85,6 +93,7 @@ t_textures	*parse_textures(t_map *map)
 	textures = init_textures();
 	if (!textures)
 		return (NULL);
-    textures = get_tex_path(map, textures);
-	return (NULL);
+	if (!get_tex_path(map, textures))
+		return (free_texture(textures), NULL);
+	return (textures);
 }

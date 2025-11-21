@@ -13,7 +13,10 @@
 CC = gcc
 SRCS_DIR = ./srcs
 SRCS = 	${SRCS_DIR}/errors/errors.c \
+		${SRCS_DIR}/frees/textures_free.c \
+		${SRCS_DIR}/frees/map_free.c \
 		${SRCS_DIR}/frees/free.c \
+		${SRCS_DIR}/utils/utils.c \
 		${SRCS_DIR}/checks/check_map.c \
 		${SRCS_DIR}/checks/checks.c \
 		${SRCS_DIR}/parsing/parse_textures.c \

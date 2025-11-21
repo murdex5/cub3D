@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   map_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 14:28:23 by kadferna          #+#    #+#             */
-/*   Updated: 2025/11/17 14:28:25 by kadferna         ###   ########.fr       */
+/*   Created: 2025/11/21 10:58:29 by kadferna          #+#    #+#             */
+/*   Updated: 2025/11/21 10:58:30 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main(int argc, char *argv[])
+void	free_map(t_map *map)
 {
-	t_map *map;
-	if (argc != 2)
-		return (ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1), 1);
-	map = parse_map(argv[1]);
 	if (!map)
-		return (1);
-	free_map(map);
-	return (0);
+		return ;
+	if (map->content)
+		free_char_arra(map->content);
+	if (map->textures)
+		free_texture(map->textures);
+	free(map);
 }

@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   textures_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/17 14:28:23 by kadferna          #+#    #+#             */
-/*   Updated: 2025/11/17 14:28:25 by kadferna         ###   ########.fr       */
+/*   Created: 2025/11/21 11:09:31 by kadferna          #+#    #+#             */
+/*   Updated: 2025/11/21 11:09:33 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	main(int argc, char *argv[])
+void	free_tex_path(t_textures *texture)
 {
-	t_map *map;
-	if (argc != 2)
-		return (ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1), 1);
-	map = parse_map(argv[1]);
-	if (!map)
-		return (1);
-	free_map(map);
-	return (0);
+	if (texture->east_path)
+		free(texture->east_path);
+	if (texture->north_path)
+		free(texture->north_path);
+	if (texture->south_path)
+		free(texture->south_path);
+	if (texture->west_path)
+		free(texture->west_path);
+}
+
+void	free_texture(t_textures *texture)
+{
+	if (!texture)
+		return ;
+	free_tex_path(texture);
+	free(texture);
 }

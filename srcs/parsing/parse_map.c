@@ -39,8 +39,8 @@ int	count_lines(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		perror("So long");
-		return (0);
+		perror("cub3D");
+		exit(0);
 	}
 	lines = 0;
 	line = get_next_line(fd);
@@ -91,9 +91,11 @@ t_map	*map_pop(t_map *map, char *path)
 	map->content = ft_calloc(sizeof(char *), (lines + 1));
 	map->content[lines] = NULL;
 	if (!map->content)
-		return (printf("MEm allc fail add a free func for mapo\n"), NULL);
+		return (err_msg_std("MEm allc fail add a free func for mapo\n"),
+			free_char_arra(map->content), NULL);
 	if (!read_map_files(map, path))
-		return (printf("MEm allc fail add a free func for mapo\n"), NULL);
+		return (err_msg_std("MEm allc fail add a free func for mapo\n"),
+			free_char_arra(map->content), NULL);
 	map->textures = parse_textures(map);
 	return (map);
 }
