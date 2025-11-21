@@ -40,3 +40,11 @@ int	check_file_type(char *file, char *type)
 	}
 }
 
+int	check_loaded(t_textures *textures)
+{
+	if (textures->east->img && textures->north->img && textures->south->img
+		&& textures->west->img)
+		return (1);
+	else
+		return (0);
+}

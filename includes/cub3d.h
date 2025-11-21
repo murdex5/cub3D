@@ -44,17 +44,23 @@ typedef struct s_player
 	double		plane_y;
 }				t_player;
 
+typedef struct s_texture
+{
+	void		*img;
+	char		*path;
+	int			img_height;
+	int			img_width;
+}				t_texture;
+
 typedef struct s_textures
 {
-	char		*north_path;
-	char		*south_path;
-	char		*west_path;
-	char		*east_path;
-	void		*north_xpm;
-	void		*south_xpm;
-	void		*west_xpm;
-	void		*east_xpm;
+	t_texture	*north;
+	t_texture	*south;
+	t_texture	*west;
+	t_texture	*east;
+
 }				t_textures;
+
 typedef struct s_map
 {
 	char		**content;
@@ -81,8 +87,8 @@ typedef struct s_game
 int				err_msg_std(char *msg);
 
 // Freees
-void			free_texture(t_textures *texture);
-void			free_map(t_map *map);
+void			free_texture(t_textures *texture, void *mlx);
+void			free_map(t_map *map, void *mlx);
 void			free_char_arra(char **arr);
 int				free_n_return(char **str, char *temp, char *msg);
 
@@ -91,12 +97,13 @@ int				check_if_null_text(t_textures *textures);
 int				ft_strcmp(const char *s1, const char *s2);
 
 // Checks
+int				check_loaded(t_textures *textures);
 int				check_file_type(char *file, char *type);
 int				check_map(t_map *map);
 
 // Parsing
 int				count_lines(char *file);
-t_textures		*parse_textures(t_map *map);
-t_map			*parse_map(char *path);
+t_textures		*parse_textures(t_map *map, void *mlx);
+t_map			*parse_map(char *path, void *mlx);
 
 #endif

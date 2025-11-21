@@ -38,8 +38,8 @@ char	*ft_strcpy(char *dest, const char *src)
 
 int	check_if_null_text(t_textures *textures)
 {
-	if (textures->east_path && textures->north_path && textures->south_path
-		&& textures->west_path)
+	if (textures->east->path&& textures->north->path && textures->south->path
+		&& textures->west->path)
 		return (1);
 	else
 		return (0);

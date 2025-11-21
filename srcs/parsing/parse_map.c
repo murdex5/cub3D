@@ -83,7 +83,7 @@ int	read_map_files(t_map *map, char *file)
 	return (1);
 }
 
-t_map	*map_pop(t_map *map, char *path)
+t_map	*map_pop(t_map *map, char *path, void *mlx)
 {
 	int	lines;
 
@@ -96,11 +96,11 @@ t_map	*map_pop(t_map *map, char *path)
 	if (!read_map_files(map, path))
 		return (err_msg_std("MEm allc fail add a free func for mapo\n"),
 			free_char_arra(map->content), NULL);
-	map->textures = parse_textures(map);
+	map->textures = parse_textures(map, mlx);
 	return (map);
 }
 
-t_map	*parse_map(char *path)
+t_map	*parse_map(char *path, void *mlx)
 {
 	t_map	*map;
 
@@ -109,7 +109,7 @@ t_map	*parse_map(char *path)
 	map = init_map();
 	if (!map)
 		return (printf("Couldn't initialize the map\n"), NULL);
-	map = map_pop(map, path);
+	map = map_pop(map, path, mlx);
 	if (!map)
 		return (NULL);
 	return (map);

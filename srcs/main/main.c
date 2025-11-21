@@ -15,11 +15,18 @@
 int	main(int argc, char *argv[])
 {
 	t_map *map;
+	void *mlx;
 	if (argc != 2)
 		return (ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1), 1);
-	map = parse_map(argv[1]);
+	mlx = mlx_init();
+	map = parse_map(argv[1], mlx);
 	if (!map)
 		return (1);
-	free_map(map);
+	free_map(map, mlx);
+	if (mlx)
+	{
+		mlx_destroy_display(mlx);
+		free(mlx);
+	}
 	return (0);
 }

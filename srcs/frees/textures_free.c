@@ -12,22 +12,24 @@
 
 #include "../../includes/cub3d.h"
 
-void	free_tex_path(t_textures *texture)
-{
-	if (texture->east_path)
-		free(texture->east_path);
-	if (texture->north_path)
-		free(texture->north_path);
-	if (texture->south_path)
-		free(texture->south_path);
-	if (texture->west_path)
-		free(texture->west_path);
-}
-
-void	free_texture(t_textures *texture)
+void	free_tex(t_texture *texture, void *mlx)
 {
 	if (!texture)
 		return ;
-	free_tex_path(texture);
+	if (texture->path)
+		free(texture->path);
+	if (texture->img)
+		mlx_destroy_image(mlx, texture->img);
+	free(texture);
+}
+
+void	free_texture(t_textures *texture, void *mlx)
+{
+	if (!texture)
+		return ;
+	free_tex(texture->east, mlx);
+	free_tex(texture->north, mlx);
+	free_tex(texture->south, mlx);
+	free_tex(texture->west, mlx);
 	free(texture);
 }
