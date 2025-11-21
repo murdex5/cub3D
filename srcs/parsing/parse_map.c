@@ -21,8 +21,8 @@ static t_map	*init_map(void)
 		return (NULL);
 	map->content = NULL;
 	map->textures = NULL;
-	map->ceiling_color = 0;
-	map->floor_color = 0;
+	map->ceiling_color = -1;
+	map->floor_color = -1;
 	map->height = 0;
 	map->width = 0;
 	map->start_dir = 0;
@@ -86,17 +86,32 @@ int	read_map_files(t_map *map, char *file)
 t_map	*map_pop(t_map *map, char *path, void *mlx)
 {
 	int	lines;
+	int	i;
 
+	i = 0;
 	lines = count_lines(path);
 	map->content = ft_calloc(sizeof(char *), (lines + 1));
 	map->content[lines] = NULL;
 	if (!map->content)
 		return (err_msg_std("MEm allc fail add a free func for mapo\n"),
-			free_char_arra(map->content), NULL);
+			free_char_array(map->content), NULL);
 	if (!read_map_files(map, path))
 		return (err_msg_std("MEm allc fail add a free func for mapo\n"),
-			free_char_arra(map->content), NULL);
+			free_char_array(map->content), NULL);
 	map->textures = parse_textures(map, mlx);
+	while (i < lines)
+	{
+		if (map->floor_color == -1 || map->ceiling_color == -1)
+		{
+			if (map->content[i][0] == 'F' || map->content[i][0] == 'C')
+			{
+				if (!assign_colors(map->content, i, map))
+					return (err_msg_std("Invalid color format"), free_map(map,
+							mlx), NULL);
+			}
+		}
+		i++;
+	}
 	return (map);
 }
 

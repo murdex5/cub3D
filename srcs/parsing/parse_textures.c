@@ -61,7 +61,7 @@ t_textures	*assign_paths(char **content, int i, t_textures *textures)
 
 	split_result = ft_split(content[i], ' ');
 	if (!split_result || !split_result[0])
-		return (free_char_arra(split_result), NULL);
+		return (free_char_array(split_result), NULL);
 	if (!split_result)
 		return (NULL);
 	if (ft_strcmp(split_result[0], "NO") == 0)
@@ -72,7 +72,7 @@ t_textures	*assign_paths(char **content, int i, t_textures *textures)
 		textures->west->path = ft_strdup(split_result[1]);
 	else if (ft_strcmp(split_result[0], "EA") == 0)
 		textures->east->path = ft_strdup(split_result[1]);
-	free_char_arra(split_result);
+	free_char_array(split_result);
 	return (textures);
 }
 

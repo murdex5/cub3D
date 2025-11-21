@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-void	free_char_arra(char **arr)
+void	free_char_array(char **arr)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ void	free_char_arra(char **arr)
 }
 int	free_n_return(char **str, char *temp, char *msg)
 {
-	free_char_arra(str);
+	free_char_array(str);
 	if (temp)
 		free(temp);
 	temp = NULL;

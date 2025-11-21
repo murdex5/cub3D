@@ -17,7 +17,7 @@ void	free_map(t_map *map, void *mlx)
 	if (!map)
 		return ;
 	if (map->content)
-		free_char_arra(map->content);
+		free_char_array(map->content);
 	if (map->textures)
 		free_texture(map->textures, mlx);
 	free(map);
