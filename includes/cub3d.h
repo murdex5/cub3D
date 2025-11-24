@@ -32,6 +32,8 @@
 # define RIGHT 3
 # define LEFT 4
 
+# define ERR_MSG "Error\nPopulation Map Failed. Please check File Paths Or Colour inputs\n"
+
 /* Structs */
 
 typedef struct s_player

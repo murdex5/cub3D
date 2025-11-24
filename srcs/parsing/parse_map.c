@@ -103,8 +103,7 @@ t_map	*map_pop(t_map *map, char *path, void *mlx)
 			if (map->content[i][0] == 'F' || map->content[i][0] == 'C')
 			{
 				if (!assign_colors(map->content, i, map))
-					return (err_msg_std("Invalid color format"), free_map(map,
-							mlx), NULL);
+					return (free_map(map, mlx), NULL);
 			}
 		}
 		i++;
@@ -157,11 +156,12 @@ t_map	*parse_map(char *path, void *mlx)
 		return (printf("Couldn't initialize the map\n"), NULL);
 	map = map_pop(map, path, mlx);
 	if (!map)
-		return (NULL);
+		return (printf("%s\n", ERR_MSG), NULL);
+	if (map->ceiling_color < 0 || map->floor_color < 0)
+		return (free_map(map, mlx), printf("%s", ERR_MSG), NULL);
 	if (!check_map(map))
 		return (free_map(map, mlx), NULL);
 	if (!get_player_pos(map))
 		return (free_map(map, mlx), err_msg_std("parsing failed"), NULL);
-	
 	return (map);
 }

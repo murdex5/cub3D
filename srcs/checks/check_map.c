@@ -12,17 +12,11 @@
 
 #include "../../includes/cub3d.h"
 
-int	check_one(char *str, char c)
+int	check_one(char c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (0);
-		i++;
-	}
+	if (c != '0' && c != '1' && c != ' ' && c != 'N' && c != 'S' && c != 'E'
+		&& c != 'W')
+		return (0);
 	return (1);
 }
 
@@ -123,11 +117,40 @@ int	check_surrounded(t_map *map)
 	return (1);
 }
 
+int	check_valid_chars(t_map *map)
+{
+	int		i;
+	size_t	j;
+	int		map_len;
+	char	c;
+
+	i = map->lst_itr;
+	map_len = str_arr_len(map->content);
+	while (i < map_len)
+	{
+		j = 0;
+		while (j < ft_strlen(map->content[i]))
+		{
+			c = map->content[i][j];
+			if (!check_one(c))
+			{
+				printf("Error\nInvalid char: %c\n", c);
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	check_map(t_map *map)
 {
 	mod_lst_it(map);
 	get_h_w(map);
 	if (!check_surrounded(map))
 		return (err_msg_std("The map is not surrounded"), 0);
+	if (!check_valid_chars(map))
+		return (0);
 	return (1);
 }
