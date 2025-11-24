@@ -20,6 +20,40 @@ int	check_one(char c)
 	return (1);
 }
 
+int	check_just_chars(char c)
+{
+	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E'
+		|| c == 'W')
+		return (1);
+	return (0);
+}
+
+int check_whole_str(char *str)
+{
+	int occr;
+	size_t i;
+	size_t len;
+
+	len = ft_strlen(str);
+	i = 0;
+	occr = 0;
+	while (i < len)
+	{
+		if (str[i] == ' ')
+		{
+			i++;
+			continue;
+		}
+		else if (check_just_chars(str[i]))
+			occr++;
+		i++;
+	}
+	if (occr >= 1)
+		return (1);
+	else 
+		return (0);
+}
+
 void	get_h_w(t_map *map)
 {
 	int	i;
@@ -37,11 +71,13 @@ void	get_h_w(t_map *map)
 		k = ft_strlen(map->content[i]);
 		if (k > w)
 			w = k;
-		h++;
+		if (check_whole_str(map->content[i]))
+			h++;
 		i++;
 	}
 	map->width = w;
 	map->height = h;
+	printf("%d\n", map->height);
 }
 
 int	check_top_bot(t_map *map)
