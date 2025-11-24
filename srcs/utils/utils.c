@@ -38,9 +38,28 @@ char	*ft_strcpy(char *dest, const char *src)
 
 int	check_if_null_text(t_textures *textures)
 {
-	if (textures->east->path&& textures->north->path && textures->south->path
+	if (textures->east->path && textures->north->path && textures->south->path
 		&& textures->west->path)
 		return (1);
 	else
 		return (0);
+}
+
+int	str_arr_len(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (!str || !*str)
+		return (0);
+	while (str[i] != NULL)
+		i++;
+	return (i);
+}
+
+int	is_present(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
 }

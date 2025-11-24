@@ -25,9 +25,8 @@ static t_map	*init_map(void)
 	map->floor_color = -1;
 	map->height = 0;
 	map->width = 0;
-	map->start_dir = 0;
-	map->start_x = 0;
-	map->start_y = 0;
+	map->start_x = -1;
+	map->start_y = -1;
 	return (map);
 }
 int	count_lines(char *file)
@@ -93,11 +92,9 @@ t_map	*map_pop(t_map *map, char *path, void *mlx)
 	map->content = ft_calloc(sizeof(char *), (lines + 1));
 	map->content[lines] = NULL;
 	if (!map->content)
-		return (err_msg_std("MEm allc fail add a free func for mapo\n"),
-			free_char_array(map->content), NULL);
+		return (free_char_array(map->content), NULL);
 	if (!read_map_files(map, path))
-		return (err_msg_std("MEm allc fail add a free func for mapo\n"),
-			free_char_array(map->content), NULL);
+		return (free_char_array(map->content), NULL);
 	map->textures = parse_textures(map, mlx);
 	while (i < lines)
 	{
@@ -115,6 +112,40 @@ t_map	*map_pop(t_map *map, char *path, void *mlx)
 	return (map);
 }
 
+void	set_pos(size_t i, size_t j, t_map *map)
+{
+	map->start_y = i;
+	map->start_x = j;
+	map->playr_count++;
+}
+
+int	get_player_pos(t_map *map)
+{
+	int		map_len;
+	int		i;
+	size_t	temp_len;
+	size_t	j;
+
+	i = map->lst_itr;
+	map_len = str_arr_len(map->content);
+	temp_len = 0;
+	while (i < map_len)
+	{
+		j = 0;
+		temp_len = ft_strlen(map->content[i]);
+		while (j < temp_len)
+		{
+			if (is_present(map->content[i][j]))
+				set_pos(i, j, map);
+			j++;
+		}
+		i++;
+	}
+	if (map->playr_count > 1)
+		return (0);
+	return (1);
+}
+
 t_map	*parse_map(char *path, void *mlx)
 {
 	t_map	*map;
@@ -127,5 +158,10 @@ t_map	*parse_map(char *path, void *mlx)
 	map = map_pop(map, path, mlx);
 	if (!map)
 		return (NULL);
+	if (!check_map(map))
+		return (free_map(map, mlx), NULL);
+	if (!get_player_pos(map))
+		return (free_map(map, mlx), err_msg_std("parsing failed"), NULL);
+	
 	return (map);
 }

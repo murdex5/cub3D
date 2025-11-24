@@ -44,5 +44,6 @@ int	assign_colors(char **content, int i, t_map *map)
     else if (ft_strcmp(split_result[0], "C") == 0)
         map->ceiling_color = get_color(split_result[1]);
     free_char_array(split_result);
+	map->lst_itr = i + 1;
 	return (1);
 }

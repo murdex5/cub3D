@@ -68,8 +68,8 @@ typedef struct s_map
 	int			height;
 	int			start_x;
 	int			start_y;
-	char		start_dir;
-
+	int			lst_itr;
+	int			playr_count;
 	t_textures	*textures;
 	int			floor_color;
 	int			ceiling_color;
@@ -93,6 +93,8 @@ void			free_char_array(char **arr);
 int				free_n_return(char **str, char *temp, char *msg);
 
 // Utils
+int				is_present(char c);
+int				str_arr_len(char **str);
 int				check_if_null_text(t_textures *textures);
 int				ft_strcmp(const char *s1, const char *s2);
 
