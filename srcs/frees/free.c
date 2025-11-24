@@ -36,3 +36,14 @@ int	free_n_return(char **str, char *temp, char *msg)
 		err_msg_std(msg);
 	return (0);
 }
+
+void	free_mlx(void *mlx)
+{
+	if (mlx)
+	{
+		mlx_destroy_display(mlx);
+		free(mlx);
+	}
+	else
+		return ;
+}

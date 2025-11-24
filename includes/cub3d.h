@@ -17,6 +17,7 @@
 # include "../mlx/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/stat.h>
 
 /* DATA TYPES */
 
@@ -89,6 +90,7 @@ typedef struct s_game
 int				err_msg_std(char *msg);
 
 // Freees
+void			free_mlx(void *mlx);
 void			free_texture(t_textures *texture, void *mlx);
 void			free_map(t_map *map, void *mlx);
 void			free_char_array(char **arr);

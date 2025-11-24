@@ -77,7 +77,6 @@ void	get_h_w(t_map *map)
 	}
 	map->width = w;
 	map->height = h;
-	printf("%d\n", map->height);
 }
 
 int	check_top_bot(t_map *map)

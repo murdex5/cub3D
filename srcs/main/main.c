@@ -21,12 +21,8 @@ int	main(int argc, char *argv[])
 	mlx = mlx_init();
 	map = parse_map(argv[1], mlx);
 	if (!map)
-		return (1);
+		return (free_mlx(mlx), 1);
 	free_map(map, mlx);
-	if (mlx)
-	{
-		mlx_destroy_display(mlx);
-		free(mlx);
-	}
+	free_mlx(mlx);
 	return (0);
 }

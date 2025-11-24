@@ -72,6 +72,8 @@ t_textures	*assign_paths(char **content, int i, t_textures *textures)
 		textures->west->path = ft_strdup(split_result[1]);
 	else if (ft_strcmp(split_result[0], "EA") == 0)
 		textures->east->path = ft_strdup(split_result[1]);
+	if (!check_file_type(split_result[1], ".xpm"))
+		return (free_char_array(split_result), NULL);
 	free_char_array(split_result);
 	return (textures);
 }
@@ -90,34 +92,40 @@ t_textures	*get_tex_path(t_map *map, t_textures *textures)
 		if (!check_if_null_text(textures))
 		{
 			if (!assign_paths(content, i, textures))
-				return (err_msg_std("Parsing path failed"), NULL);
+				return (err_msg_std("Parsing Texture path failed"), NULL);
 		}
 		i++;
 	}
 	return (textures);
 }
+
+int	load_texture(t_texture *texture, void *mlx)
+{
+	struct stat	buffer;
+
+	if (stat(texture->path, &buffer) != 0)
+	{
+		printf("Error\nFile not found %s\n", texture->path);
+		return (0);
+	}
+	texture->img = mlx_xpm_file_to_image(mlx, texture->path,
+			&texture->img_width, &texture->img_height);
+	if (!texture->img)
+	{
+		printf("Error: Failed to load XPM: %s\n", texture->path);
+		return (0);
+	}
+	return (1);
+}
 int	load_textures(t_textures *textures, void *mlx)
 {
-	int	width;
-	int	height;
-
-	width = textures->east->img_width;
-	height = textures->east->img_height;
-	textures->east->img = mlx_xpm_file_to_image(mlx, textures->east->path,
-			&width, &height);
-	width = textures->west->img_width;
-	height = textures->west->img_height;
-	textures->west->img = mlx_xpm_file_to_image(mlx, textures->west->path,
-			&width, &height);
-	width = textures->south->img_width;
-	height = textures->south->img_height;
-	textures->south->img = mlx_xpm_file_to_image(mlx, textures->south->path,
-			&width, &height);
-	width = textures->north->img_width;
-	height = textures->north->img_height;
-	textures->north->img = mlx_xpm_file_to_image(mlx, textures->north->path,
-			&width, &height);
-	if (!check_loaded(textures))
+	if (!load_texture(textures->east, mlx))
+		return (0);
+	if (!load_texture(textures->west, mlx))
+		return (0);
+	if (!load_texture(textures->north, mlx))
+		return (0);
+	if (!load_texture(textures->south, mlx))
 		return (0);
 	return (1);
 }
