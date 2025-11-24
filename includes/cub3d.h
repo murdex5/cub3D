@@ -97,6 +97,17 @@ void			free_char_array(char **arr);
 int				free_n_return(char **str, char *temp, char *msg);
 
 // Utils
+void			mod_lst_it(t_map *map);
+void			get_h_w(t_map *map);
+int				check_one(char c);
+int				check_just_chars(char c);
+;
+t_textures		*assign_paths(char **content, int i, t_textures *textures);
+int				count_lines_arr(char **arr);
+int				load_textures(t_textures *textures, void *mlx);
+int				get_player_pos(t_map *map);
+int				count_lines(char *file);
+;
 int				is_present(char c);
 int				str_arr_len(char **str);
 int				check_if_null_text(t_textures *textures);
@@ -109,7 +120,8 @@ int				check_map(t_map *map);
 
 // Parsing
 int				assign_colors(char **content, int i, t_map *map);
-int				count_lines(char *file);
+t_textures		*get_tex_path(t_map *map, t_textures *textures);
+int				load_texture(t_texture *texture, void *mlx);
 t_textures		*parse_textures(t_map *map, void *mlx);
 t_map			*parse_map(char *path, void *mlx);
 

@@ -42,10 +42,8 @@ int	check_file_type(char *file, char *type)
 
 int	check_loaded(t_textures *textures)
 {
-	// if (textures->east->img && textures->north->img && textures->south->img
-	// 	&& textures->west->img)
-	if (textures->east->img == NULL || textures->north->img == NULL || textures->south->img == NULL
-		|| textures->west->img == NULL)
+	if (textures->east->img == NULL || textures->north->img == NULL
+		|| textures->south->img == NULL || textures->west->img == NULL)
 		return (0);
 	else
 		return (1);

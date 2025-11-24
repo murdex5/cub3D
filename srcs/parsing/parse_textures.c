@@ -12,18 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-int	count_lines_arr(char **arr)
-{
-	int	i;
-
-	if (!arr)
-		return (0);
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
-
 t_texture	*init_texture(void)
 {
 	t_texture	*texture;
@@ -52,29 +40,6 @@ t_textures	*init_textures(void)
 	if (!textures->east || !textures->north || !textures->south
 		|| !textures->west)
 		return (err_msg_std("Failed allocating textures"), NULL);
-	return (textures);
-}
-
-t_textures	*assign_paths(char **content, int i, t_textures *textures)
-{
-	char	**split_result;
-
-	split_result = ft_split(content[i], ' ');
-	if (!split_result || !split_result[0])
-		return (free_char_array(split_result), NULL);
-	if (!split_result)
-		return (NULL);
-	if (ft_strcmp(split_result[0], "NO") == 0)
-		textures->north->path = ft_strdup(split_result[1]);
-	else if (ft_strcmp(split_result[0], "SO") == 0)
-		textures->south->path = ft_strdup(split_result[1]);
-	else if (ft_strcmp(split_result[0], "WE") == 0)
-		textures->west->path = ft_strdup(split_result[1]);
-	else if (ft_strcmp(split_result[0], "EA") == 0)
-		textures->east->path = ft_strdup(split_result[1]);
-	if (!check_file_type(split_result[1], ".xpm"))
-		return (free_char_array(split_result), NULL);
-	free_char_array(split_result);
 	return (textures);
 }
 
@@ -117,22 +82,10 @@ int	load_texture(t_texture *texture, void *mlx)
 	}
 	return (1);
 }
-int	load_textures(t_textures *textures, void *mlx)
-{
-	if (!load_texture(textures->east, mlx))
-		return (0);
-	if (!load_texture(textures->west, mlx))
-		return (0);
-	if (!load_texture(textures->north, mlx))
-		return (0);
-	if (!load_texture(textures->south, mlx))
-		return (0);
-	return (1);
-}
 
 t_textures	*parse_textures(t_map *map, void *mlx)
 {
-	t_textures *textures;
+	t_textures	*textures;
 
 	textures = init_textures();
 	if (!textures)

@@ -16,6 +16,9 @@ SRCS = 	${SRCS_DIR}/errors/errors.c \
 		${SRCS_DIR}/frees/textures_free.c \
 		${SRCS_DIR}/frees/map_free.c \
 		${SRCS_DIR}/frees/free.c \
+		${SRCS_DIR}/utils/check_map_utils.c \
+		${SRCS_DIR}/utils/parse_textures_utils.c \
+		${SRCS_DIR}/utils/parse_map_utils.c \
 		${SRCS_DIR}/utils/utils.c \
 		${SRCS_DIR}/checks/check_map.c \
 		${SRCS_DIR}/checks/checks.c \
