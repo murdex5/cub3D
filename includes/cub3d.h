@@ -32,7 +32,7 @@
 # define RIGHT 3
 # define LEFT 4
 
-# define ERR_MSG "Error\nPopulation Map Failed. Please check File Paths Or Colour inputs\n"
+# define ERR_MSG "Error\nFailed to Populate. Please check File Paths Or Colour inputs\n"
 
 /* Structs */
 
