@@ -87,6 +87,33 @@ t_map	*map_pop(t_map *map, char *path, void *mlx)
 	}
 	return (map);
 }
+int	get_just_map(t_map *map)
+{
+	char	**map_copy;
+	int		arr_len;
+	int		i;
+	int		j;
+
+	i = map->lst_itr;
+	arr_len = str_arr_len(map->content);
+	map_copy = ft_calloc(sizeof(char *), map->height + 1);
+	if (!map_copy)
+		return (0);
+	map_copy[map->height] = NULL;
+	j = 0;
+	while (i < arr_len)
+	{
+		map_copy[j] = ft_strdup(map->content[i]);
+		if (!map_copy[j])
+			return (free_char_array(map_copy), 0);
+		i++;
+		j++;
+	}
+	free_char_array(map->content);
+	map->content = NULL;
+	map->content = map_copy;
+	return (1);
+}
 
 t_map	*parse_map(char *path, void *mlx)
 {
@@ -105,12 +132,14 @@ t_map	*parse_map(char *path, void *mlx)
 		return (printf("Couldn't initialize the map\n"), NULL);
 	map = map_pop(map, path, mlx);
 	if (!map)
-		return (printf("%s\n", ERR_MSG), NULL);
+		return (printf("%s", ERR_MSG), NULL);
 	if (map->ceiling_color < 0 || map->floor_color < 0)
 		return (free_map(map, mlx), printf("%s", ERR_MSG), NULL);
 	if (!check_map(map))
 		return (free_map(map, mlx), NULL);
 	if (!get_player_pos(map))
+		return (free_map(map, mlx), err_msg_std("parsing failed"), NULL);
+	if (!get_just_map(map))
 		return (free_map(map, mlx), err_msg_std("parsing failed"), NULL);
 	return (map);
 }

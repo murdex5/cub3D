@@ -16,10 +16,10 @@ void	free_char_array(char **arr)
 {
 	int	i;
 
-	if (!arr)
+	if (arr == NULL)
 		return ;
 	i = 0;
-	while (arr[i])
+	while (arr[i] != NULL)
 	{
 		free(arr[i]);
 		i++;

@@ -14,8 +14,9 @@
 
 int	main(int argc, char *argv[])
 {
-	t_map *map;
-	void *mlx;
+	t_map	*map;
+	void	*mlx;
+
 	if (argc != 2)
 		return (ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1), 1);
 	mlx = mlx_init();
