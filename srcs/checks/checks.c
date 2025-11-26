@@ -48,3 +48,57 @@ int	check_loaded(t_textures *textures)
 	else
 		return (1);
 }
+
+int	check_instances(char *line)
+{
+	size_t	len;
+
+	len = ft_strlen(line);
+	if (len < 2)
+		return (0);
+	while (len > 0 && (line[len - 1] == ' ' || line[len - 1] == '\n'))
+		len--;
+	if (len == 0)
+		return (0);
+	if (line[0] == '1' && line[len - 1] == '1')
+		return (1);
+	return (0);
+}
+
+int	check_zero(char **map, char *line, int k)
+{
+	size_t	i;
+	size_t	str_len;
+
+	i = 0;
+	str_len = ft_strlen(line);
+	while (i < str_len)
+	{
+		if (line[i] == ' ')
+		{
+			if (map[k - 1][i] == '0')
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	has_holes(char **map)
+{
+	int	arr_len;
+	int	i;
+
+	arr_len = str_arr_len(map);
+	i = 0;
+	while (i < arr_len)
+	{
+		if (check_instances(map[i]))
+		{
+			if (!check_zero(map, map[i], i))
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
