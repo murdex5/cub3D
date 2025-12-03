@@ -97,6 +97,6 @@ int	check_map(t_map *map)
 	if (!check_valid_chars(map))
 		return (0);
 	if (!has_holes(map->content))
-		return (err_msg_std("The map is not surrounded"), 0);
+		return (err_msg_std("Can not contain empty spaces inside the map"), 0);
 	return (1);
 }
