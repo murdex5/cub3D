@@ -87,6 +87,7 @@ t_map	*map_pop(t_map *map, char *path, void *mlx)
 	}
 	return (map);
 }
+
 int	get_just_map(t_map *map)
 {
 	char	**map_copy;

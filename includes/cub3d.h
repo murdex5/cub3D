@@ -107,7 +107,6 @@ int				count_lines_arr(char **arr);
 int				load_textures(t_textures *textures, void *mlx);
 int				get_player_pos(t_map *map);
 int				count_lines(char *file);
-;
 int				is_present(char c);
 int				str_arr_len(char **str);
 int				check_if_null_text(t_textures *textures);
