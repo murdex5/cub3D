@@ -39,12 +39,10 @@
 
 typedef struct s_player
 {
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
+	int			pos_x;
+	int			pos_y;
+	int			dir_x;
+	int			dir_y;
 }				t_player;
 
 typedef struct s_texture
@@ -82,6 +80,8 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	int			screen_width;
+	int			screen_height;
 	t_map		*map;
 	t_player	*player;
 }				t_game;
@@ -124,5 +124,6 @@ t_textures		*get_tex_path(t_map *map, t_textures *textures);
 int				load_texture(t_texture *texture, void *mlx);
 t_textures		*parse_textures(t_map *map, void *mlx);
 t_map			*parse_map(char *path, void *mlx);
+t_player		*parse_player(t_map *map);
 
 #endif
