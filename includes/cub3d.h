@@ -113,6 +113,7 @@ int				check_if_null_text(t_textures *textures);
 int				ft_strcmp(const char *s1, const char *s2);
 
 // Checks
+int				check_holes(char **map, char *line, int k);
 int				has_holes(char **map);
 int				check_loaded(t_textures *textures);
 int				check_file_type(char *file, char *type);

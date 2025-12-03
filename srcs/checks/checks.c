@@ -84,6 +84,28 @@ int	check_zero(char **map, char *line, int k)
 	return (1);
 }
 
+int	check_holes(char **map, char *line, int k)
+{
+	size_t	i;
+	size_t	str_len;
+
+	i = 0;
+	str_len = ft_strlen(line);
+	while (i < str_len)
+	{
+		if (!map[k + 1])
+			return (1);
+		if (line[i] == ' ')
+		{
+			if ((map[k - 1][i] == '0' || map[k - 1][i] == '1') && (map[k
+					+ 1][i] == '0' || map[k + 1][i] == '1'))
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	has_holes(char **map)
 {
 	int	arr_len;
@@ -96,6 +118,16 @@ int	has_holes(char **map)
 		if (check_instances(map[i]))
 		{
 			if (!check_zero(map, map[i], i))
+				return (0);
+		}
+		i++;
+	}
+	i = 0;
+	while ( i < arr_len )
+	{
+		if (check_instances(map[i]))
+		{
+			if (!check_holes(map, map[i], i))
 				return (0);
 		}
 		i++;
