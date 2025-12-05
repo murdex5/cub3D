@@ -1,20 +1,58 @@
-ERROR!!
+ERROR: Invalid map configuration
 
-01. Textures
-├── NO ../texures.xpm
-├── SO ../texures.xpm
-├── WE ../texures.xpm
-├── EA ../texures.xpm
+Map data must appear last in the configuration file and be properly enclosed.
 
-02. Colours
-├── F 225,225,225
-├── C 225,225,225
+Expected format:
+  ┌─────────────────────────────────────────┐
+  │  111111111111                           │
+  │  100000000001                           │
+  │  100110011001                           │
+  │  100000N00001                           │
+  │  111111111111                           │
+  └─────────────────────────────────────────┘
 
-03. Map                        <-- Textures Should be put as the third argument.
-├── 111111
-├── 100101
-├── 101001
-├── 1100N1
-├── 111111
+Valid characters:
+  0     <- Floor (walkable area)
+  1     <- Wall
+  N     <- Player spawn facing North
+  S     <- Player spawn facing South
+  E     <- Player spawn facing East
+  W     <- Player spawn facing West
+  space <- Empty area (must not be accessible)
 
-P.S: The lines are just for demostraion pupoeses only. :)
+Examples of valid maps:
+  ✓ Map fully enclosed by walls ('1')
+  ✓ Contains exactly one player position (N, S, E, or W)
+  ✓ No gaps or holes in wall boundaries
+  ✓ All walkable areas ('0') are enclosed
+
+Examples of invalid maps:
+  ✗ 11111              <- Map not closed
+     10001
+     10N01
+     1000
+
+  ✗ 111111             <- Multiple player positions
+     10N001
+     10S001
+     111111
+
+  ✗ 111111             <- Hole in the map
+     10 001
+     10N001
+     111111
+
+  ✗ 111111             <- Walkable area touches edge
+     000001
+     10N001
+     111111
+
+Rules:
+  • Map must be completely enclosed by walls ('1').
+  • Exactly one player position (N, S, E, or W) is required.
+  • No empty lines allowed within map data.
+  • Spaces inside the map must not be adjacent to walkable areas.
+  • All walkable areas ('0') must be fully enclosed.
+  • Map must appear after textures and colours.
+
+Note: The structure above is for illustration purposes only.

@@ -62,19 +62,20 @@ int	read_map_files(t_map *map, char *file)
 
 t_map	*map_pop(t_map *map, char *path, void *mlx)
 {
-	int	lines;
+	int		lines;
+	char	*debug;
 
 	lines = count_lines(path);
 	map->content = ft_calloc(sizeof(char *), (lines + 1));
 	map->content[lines] = NULL;
 	if (!map->content)
 		return (free_char_array(map->content), NULL);
-	char *debug = DEBUG;
+	debug = DEBUG;
 	if (!read_map_files(map, path))
-		return (free_char_array(map->content), NULL);
+		return (free_map(map, mlx), NULL);
 	map->textures = parse_textures(map, mlx);
 	if (!map->textures)
-		return (free_map(map, mlx), detailed_err_msg_order(TEXTURE_MSG), NULL);
+		return (free_map(map, mlx), NULL);
 	if (!set_colors(map, lines))
 		return (free_map(map, mlx), NULL);
 	printf("%s after map parse_textures\n", debug);
@@ -85,17 +86,20 @@ int	get_just_map(t_map *map)
 {
 	char	**map_copy;
 	int		arr_len;
+	int		actual_lines;
 	int		i;
 	int		j;
 
 	i = map->lst_itr;
 	arr_len = str_arr_len(map->content);
-	map_copy = ft_calloc(sizeof(char *), map->height + 1);
+	actual_lines = arr_len - map->lst_itr;
+	if (actual_lines <= 0)
+		return (0);
+	map_copy = ft_calloc(sizeof(char *), actual_lines + 1);
 	if (!map_copy)
 		return (0);
-	map_copy[map->height] = NULL;
 	j = 0;
-	while (i < arr_len)
+	while (i < arr_len && map->content[i])
 	{
 		map_copy[j] = ft_strdup(map->content[i]);
 		if (!map_copy[j])
@@ -103,9 +107,11 @@ int	get_just_map(t_map *map)
 		i++;
 		j++;
 	}
+	map_copy[j] = NULL;
 	free_char_array(map->content);
 	map->content = NULL;
 	map->content = map_copy;
+	map->height = j;
 	return (1);
 }
 
@@ -130,9 +136,9 @@ t_map	*parse_map(char *path, void *mlx)
 	if (map->ceiling_color < 0 || map->floor_color < 0)
 		return (free_map(map, mlx), err_msg_std("Failed to set Color"), NULL);
 	if (!check_map(map))
-		return (free_map(map, mlx), NULL);
+		return (free_map(map, mlx), detailed_err_msg_order(MAP_MSG), NULL);
 	if (!get_player_pos(map))
-		return (free_map(map, mlx), err_msg_std("Coulnd't find the player in the map"), NULL);
+		return (free_map(map, mlx), NULL);
 	if (!get_just_map(map))
 		return (free_map(map, mlx), err_msg_std("parsing failed"), NULL);
 	return (map);

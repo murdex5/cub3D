@@ -57,7 +57,8 @@ t_textures	*get_tex_path(t_map *map, t_textures *textures)
 		if (!check_if_null_text(textures))
 		{
 			if (!assign_paths(content, i, textures))
-				return (err_msg_std("Parsing Texture path failed."), NULL);
+				return (err_msg_std("Parsing Texture path failed."),
+					detailed_err_msg_order(TEXTURE_MSG), NULL);
 		}
 		i++;
 	}
@@ -71,6 +72,7 @@ int	load_texture(t_texture *texture, void *mlx)
 	if (stat(texture->path, &buffer) != 0)
 	{
 		printf("Error\nFile not found %s\n", texture->path);
+		detailed_err_msg_order(TEXTURE_MSG);
 		return (0);
 	}
 	texture->img = mlx_xpm_file_to_image(mlx, texture->path,
@@ -78,6 +80,7 @@ int	load_texture(t_texture *texture, void *mlx)
 	if (!texture->img)
 	{
 		printf("Error: Failed to load XPM: %s\n", texture->path);
+		detailed_err_msg_order(TEXTURE_MSG);
 		return (0);
 	}
 	return (1);

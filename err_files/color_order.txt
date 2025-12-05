@@ -1,21 +1,12 @@
-ERROR!!
+ERROR: Colour definition out of order
 
+Colours must be defined after textures and before map data.
 
-01. Textures
-├── NO ../texures.xpm
-├── SO ../texures.xpm
-├── WE ../texures.xpm
-├── EA ../texures.xpm
+Expected format:
+  F R,G,B    <- Floor colour (e.g., F 220,100,0)
+  C R,G,B    <- Ceiling colour (e.g., C 225,30,0)
 
-02. Colours                     <-- Colours Should be put as the second argument.
-├── F 225,225,225
-├── C 225,225,225
-
-03. Map
-├── 111111
-├── 100101
-├── 101001
-├── 1100N1
-├── 111111
-
-P.S: The lines are just for demostraion pupoeses only. :)
+Rules:
+  • RGB values must be integers between 0 and 255.
+  • Both floor (F) and ceiling (C) must be defined.
+  • No duplicate definitions allowed.

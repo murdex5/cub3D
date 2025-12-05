@@ -54,3 +54,9 @@ void	detailed_err_msg_order(char *path)
 		return ;
 	}
 }
+
+void mulitiple_de_msg(char *path1, char *path2)
+{
+	detailed_err_msg_order(path1);
+	detailed_err_msg_order(path2);
+}

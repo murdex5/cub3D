@@ -41,8 +41,8 @@ int	get_player_pos(t_map *map)
 		}
 		i++;
 	}
-	if (map->playr_count > 1)
-		return (0);
+	if (map->playr_count == 0)
+		return (err_msg_std("\nCouldn't find the player in the map\n"), detailed_err_msg_order(MAP_MSG), 0);
 	return (1);
 }
 
@@ -99,7 +99,7 @@ int	set_colors(t_map *map, int lines)
 
 	i = 0;
 	if (map->content_order != 1)
-		return (detailed_err_msg_order(COLOR_MSG), 0);
+		return (detailed_err_msg_order(EXPECTED_MSG), 0);
 	k = 0;
 	while (i < lines)
 	{
@@ -108,16 +108,16 @@ int	set_colors(t_map *map, int lines)
 			if (map->content[i][0] == 'F' || map->content[i][0] == 'C')
 			{
 				if (!assign_colors(map->content, i, map))
-					return (err_msg_std("Could not set colors!"), 0);
+					return (detailed_err_msg_order(COLOR_MSG), 0);
 				k = i + 1;
 			}
 		}
 		i++;
 	}
 	if (map->ceiling_color < 0 || map->floor_color < 0)
-		return ( err_msg_std("Failed to set dColor"), 0);
+		return ( detailed_err_msg_order(COLOR_NEG), 0);
 	if (!check_for_map(map, lines, k))
-		return (detailed_err_msg_order(COLOR_MSG), 0);
+		return (detailed_err_msg_order(EXPECTED_MSG), 0);
 	map->content_order = 2;
 	return (1);
 }

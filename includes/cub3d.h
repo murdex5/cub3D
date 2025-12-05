@@ -37,6 +37,8 @@
 # define COLOR_MSG "err_files/color_order.txt"
 # define TEXTURE_MSG "err_files/texture_order.txt"
 # define MAP_MSG "err_files/map_order.txt"
+# define EXPECTED_MSG "err_files/expected_format.txt"
+# define COLOR_NEG "err_files/color_negative.txt"
 
 # define DEBUG "I EXECUTED";
 
@@ -95,6 +97,7 @@ typedef struct s_game
 // Errors
 int				err_msg_std(char *msg);
 void			detailed_err_msg_order(char *path);
+void			mulitiple_de_msg(char *path1, char *path2);
 
 // Freees
 void			free_mlx(void *mlx);
@@ -116,7 +119,7 @@ int				get_player_pos(t_map *map);
 int				count_lines(char *file);
 int				is_present(char c);
 int				str_arr_len(char **str);
-int	str_arr_len_EOF(char **str);
+int				str_arr_len_EOF(char **str);
 int				check_if_null_text(t_textures *textures);
 int				ft_strcmp(const char *s1, const char *s2);
 

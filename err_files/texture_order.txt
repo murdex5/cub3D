@@ -1,7 +1,35 @@
-01. Textures                     <-- Textures Should be put as the first argument.
-├── NO ../texures.xpm            
-├── SO ../texures.xpm
-├── WE ../texures.xpm
-├── EA ../texures.xpm <-- make sure to have the right path or file extenion(XPM).
+ERROR: Invalid texture configuration
 
-P.S: The lines are just for demostraion pupoeses only. :)
+Texture definitions must appear first in the configuration file.
+
+Expected format:
+  ┌─────────────────────────────────────────┐
+  │  NO ./path/to/north.xpm                 │
+  │  SO ./path/to/south.xpm                 │
+  │  WE ./path/to/west.xpm                  │
+  │  EA ./path/to/east.xpm                  │
+  └─────────────────────────────────────────┘
+
+Texture identifiers:
+  NO    <- North wall texture
+  SO    <- South wall texture
+  WE    <- West wall texture
+  EA    <- East wall texture
+
+Examples of valid definitions:
+  ✓ NO ./textures/north.xpm
+  ✓ SO textures/south.xpm
+  ✓ WE ../assets/west.xpm
+
+Examples of invalid definitions:
+  ✗ NO                        <- Missing file path
+  ✗ NORTH ./textures/n.xpm    <- Invalid identifier
+  ✗ NO ./textures/north.png   <- Invalid file extension
+  ✗ NO ./invalid/path.xpm     <- File does not exist
+
+Rules:
+  • All four textures (NO, SO, WE, EA) must be defined.
+  • Each texture path must point to a valid .xpm file.
+  • No duplicate texture definitions allowed.
+  • Textures must be defined before colours and map data.
+  

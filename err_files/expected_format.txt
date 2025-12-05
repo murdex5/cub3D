@@ -1,0 +1,27 @@
+ERROR: Invalid configuration order
+
+Expected format:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 01. Textures         <- Must appear first                                   │
+│     ├── NO ./path/to/north.xpm                                              │
+│     ├── SO ./path/to/south.xpm                                              │
+│     ├── WE ./path/to/west.xpm                                               │
+│     └── EA ./path/to/east.xpm                                               │
+│                                                                             │
+│ 02. Colours          <- Must appear second                                  │
+│     ├── F 220,100,0                                                         │
+│     └── C 225,30,0                                                          │
+│                                                                             │
+│ 03. Map              <- Must appear last                                    │
+│     ├── 111111                                                              │
+│     ├── 100001                                                              │
+│     ├── 10N001                                                              │
+│     └── 111111                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Requirements:
+  • All texture paths must point to valid .xpm files.
+  • RGB values must be between 0 and 255.
+  • Map must be enclosed by walls and contain exactly one player position.
+
+Note: The structure above is for illustration purposes only.
