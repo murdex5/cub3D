@@ -31,7 +31,7 @@ t_textures	*assign_paths(char **content, int i, t_textures *textures)
 	split_result = ft_split(content[i], ' ');
 	if (!split_result || !split_result[0])
 		return (free_char_array(split_result), NULL);
-	if (!split_result)
+	if (!split_result[1])
 		return (NULL);
 	if (ft_strcmp(split_result[0], "NO") == 0)
 		textures->north->path = ft_strdup(split_result[1]);

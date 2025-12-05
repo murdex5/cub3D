@@ -52,8 +52,10 @@ int	str_arr_len(char **str)
 	i = 0;
 	if (!str || !*str)
 		return (0);
-	while (str[i] != NULL)
+	while (str[i])
+	{
 		i++;
+	}
 	return (i);
 }
 
@@ -62,4 +64,29 @@ int	is_present(char c)
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
 	return (0);
+}
+
+int	str_arr_len_EOF(char **str)
+{
+	int i;
+	size_t j;
+	size_t len;
+
+	i = 0;
+	if (!str || !*str)
+		return (0);
+	while (str[i])
+	{
+		printf("%s\n", str[i]);
+		i++;
+	}
+	i -= 1;
+	len = ft_strlen(str[i]);
+	j = 0;
+	while (j < len)
+	{
+		if (!check_just_chars(str[i][j]))
+			return (i - 1);
+	}
+	return (i);
 }

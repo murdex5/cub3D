@@ -27,6 +27,7 @@ t_map	*init_map(void)
 	map->width = 0;
 	map->start_x = -1;
 	map->start_y = -1;
+	map->content_order = 0;
 	return (map);
 }
 
@@ -62,29 +63,21 @@ int	read_map_files(t_map *map, char *file)
 t_map	*map_pop(t_map *map, char *path, void *mlx)
 {
 	int	lines;
-	int	i;
 
-	i = 0;
 	lines = count_lines(path);
 	map->content = ft_calloc(sizeof(char *), (lines + 1));
 	map->content[lines] = NULL;
 	if (!map->content)
 		return (free_char_array(map->content), NULL);
+	char *debug = DEBUG;
 	if (!read_map_files(map, path))
 		return (free_char_array(map->content), NULL);
 	map->textures = parse_textures(map, mlx);
-	while (i < lines)
-	{
-		if (map->floor_color == -1 || map->ceiling_color == -1)
-		{
-			if (map->content[i][0] == 'F' || map->content[i][0] == 'C')
-			{
-				if (!assign_colors(map->content, i, map))
-					return (free_map(map, mlx), NULL);
-			}
-		}
-		i++;
-	}
+	if (!map->textures)
+		return (free_map(map, mlx), detailed_err_msg_order(TEXTURE_MSG), NULL);
+	if (!set_colors(map, lines))
+		return (free_map(map, mlx), NULL);
+	printf("%s after map parse_textures\n", debug);
 	return (map);
 }
 
@@ -133,13 +126,13 @@ t_map	*parse_map(char *path, void *mlx)
 		return (printf("Couldn't initialize the map\n"), NULL);
 	map = map_pop(map, path, mlx);
 	if (!map)
-		return (printf("%s", ERR_MSG), NULL);
+		return (free_map(map, mlx), NULL);
 	if (map->ceiling_color < 0 || map->floor_color < 0)
-		return (free_map(map, mlx), printf("%s", ERR_MSG), NULL);
+		return (free_map(map, mlx), err_msg_std("Failed to set Color"), NULL);
 	if (!check_map(map))
 		return (free_map(map, mlx), NULL);
 	if (!get_player_pos(map))
-		return (free_map(map, mlx), err_msg_std("parsing failed"), NULL);
+		return (free_map(map, mlx), err_msg_std("Coulnd't find the player in the map"), NULL);
 	if (!get_just_map(map))
 		return (free_map(map, mlx), err_msg_std("parsing failed"), NULL);
 	return (map);

@@ -34,6 +34,11 @@
 # define LEFT 4
 
 # define ERR_MSG "Error\nFailed to Populate. Please check File Paths Or Colour inputs\n"
+# define COLOR_MSG "err_files/color_order.txt"
+# define TEXTURE_MSG "err_files/texture_order.txt"
+# define MAP_MSG "err_files/map_order.txt"
+
+# define DEBUG "I EXECUTED";
 
 /* Structs */
 
@@ -74,6 +79,7 @@ typedef struct s_map
 	t_textures	*textures;
 	int			floor_color;
 	int			ceiling_color;
+	int			content_order;
 }				t_map;
 
 typedef struct s_game
@@ -88,6 +94,7 @@ typedef struct s_game
 
 // Errors
 int				err_msg_std(char *msg);
+void			detailed_err_msg_order(char *path);
 
 // Freees
 void			free_mlx(void *mlx);
@@ -101,7 +108,7 @@ void			mod_lst_it(t_map *map);
 void			get_h_w(t_map *map);
 int				check_one(char c);
 int				check_just_chars(char c);
-;
+int				set_colors(t_map *map, int lines);
 t_textures		*assign_paths(char **content, int i, t_textures *textures);
 int				count_lines_arr(char **arr);
 int				load_textures(t_textures *textures, void *mlx);
@@ -109,6 +116,7 @@ int				get_player_pos(t_map *map);
 int				count_lines(char *file);
 int				is_present(char c);
 int				str_arr_len(char **str);
+int	str_arr_len_EOF(char **str);
 int				check_if_null_text(t_textures *textures);
 int				ft_strcmp(const char *s1, const char *s2);
 
@@ -120,6 +128,7 @@ int				check_file_type(char *file, char *type);
 int				check_map(t_map *map);
 
 // Parsing
+int				read_map_files(t_map *map, char *file);
 int				assign_colors(char **content, int i, t_map *map);
 t_textures		*get_tex_path(t_map *map, t_textures *textures);
 int				load_texture(t_texture *texture, void *mlx);

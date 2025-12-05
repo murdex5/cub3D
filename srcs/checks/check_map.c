@@ -42,6 +42,8 @@ int	check_surrounded(t_map *map)
 	int	i;
 	int	len;
 
+	if (!map || !map->content)
+		return (0);
 	i = map->lst_itr;
 	if (!check_top_bot(map))
 		return (0);
@@ -92,11 +94,14 @@ int	check_map(t_map *map)
 {
 	mod_lst_it(map);
 	get_h_w(map);
+	if (map->content_order != 2)
+		return (0);
 	if (!check_surrounded(map))
 		return (err_msg_std("The map is not surrounded"), 0);
 	if (!check_valid_chars(map))
 		return (0);
 	if (!has_holes(map->content))
 		return (err_msg_std("Can not contain empty spaces inside the map"), 0);
+	map->content_order = 3;
 	return (1);
 }

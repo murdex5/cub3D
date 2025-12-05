@@ -18,6 +18,8 @@ int	check_file_type(char *file, char *type)
 	int		i;
 	int		j;
 
+	if (!file)
+		return (0);
 	dot = malloc(sizeof(char) * 5);
 	if (!dot)
 		return (0);
@@ -111,7 +113,7 @@ int	has_holes(char **map)
 	int	arr_len;
 	int	i;
 
-	arr_len = str_arr_len(map);
+	arr_len = str_arr_len_EOF(map);
 	i = 0;
 	while (i < arr_len)
 	{

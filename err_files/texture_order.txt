@@ -1,0 +1,7 @@
+01. Textures                     <-- Textures Should be put as the first argument.
+├── NO ../texures.xpm            
+├── SO ../texures.xpm
+├── WE ../texures.xpm
+├── EA ../texures.xpm <-- make sure to have the right path or file extenion(XPM).
+
+P.S: The lines are just for demostraion pupoeses only. :)

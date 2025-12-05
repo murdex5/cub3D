@@ -57,7 +57,7 @@ t_textures	*get_tex_path(t_map *map, t_textures *textures)
 		if (!check_if_null_text(textures))
 		{
 			if (!assign_paths(content, i, textures))
-				return (err_msg_std("Parsing Texture path failed"), NULL);
+				return (err_msg_std("Parsing Texture path failed."), NULL);
 		}
 		i++;
 	}
@@ -94,5 +94,6 @@ t_textures	*parse_textures(t_map *map, void *mlx)
 		return (free_texture(textures, mlx), NULL);
 	if (!load_textures(textures, mlx))
 		return (free_texture(textures, mlx), NULL);
+	map->content_order = 1;
 	return (textures);
 }
