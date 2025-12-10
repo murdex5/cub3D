@@ -63,14 +63,12 @@ int	read_map_files(t_map *map, char *file)
 t_map	*map_pop(t_map *map, char *path, void *mlx)
 {
 	int		lines;
-	char	*debug;
 
 	lines = count_lines(path);
 	map->content = ft_calloc(sizeof(char *), (lines + 1));
 	map->content[lines] = NULL;
 	if (!map->content)
 		return (free_char_array(map->content), NULL);
-	debug = DEBUG;
 	if (!read_map_files(map, path))
 		return (free_map(map, mlx), NULL);
 	map->textures = parse_textures(map, mlx);
@@ -78,7 +76,6 @@ t_map	*map_pop(t_map *map, char *path, void *mlx)
 		return (free_map(map, mlx), NULL);
 	if (!set_colors(map, lines))
 		return (free_map(map, mlx), NULL);
-	printf("%s after map parse_textures\n", debug);
 	return (map);
 }
 

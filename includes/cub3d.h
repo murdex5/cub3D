@@ -40,7 +40,6 @@
 # define EXPECTED_MSG "err_files/expected_format.txt"
 # define COLOR_NEG "err_files/color_negative.txt"
 
-# define DEBUG "I EXECUTED";
 
 /* Structs */
 
