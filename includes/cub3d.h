@@ -33,13 +33,15 @@
 # define RIGHT 3
 # define LEFT 4
 
+# define SCREEN_WIDTH 640
+# define SCREEN_HEIGHT 480
+
 # define ERR_MSG "Error\nFailed to Populate. Please check File Paths Or Colour inputs\n"
 # define COLOR_MSG "err_files/color_order.txt"
 # define TEXTURE_MSG "err_files/texture_order.txt"
 # define MAP_MSG "err_files/map_order.txt"
 # define EXPECTED_MSG "err_files/expected_format.txt"
 # define COLOR_NEG "err_files/color_negative.txt"
-
 
 /* Structs */
 
@@ -83,15 +85,16 @@ typedef struct s_map
 	int			content_order;
 }				t_map;
 
-typedef struct s_game
+typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	int			screen_width;
-	int			screen_height;
 	t_map		*map;
+	t_textures	*textures;
+	int			win_height;
+	int			win_width;
 	t_player	*player;
-}				t_game;
+}				t_data;
 
 // Errors
 int				err_msg_std(char *msg);
@@ -104,6 +107,7 @@ void			free_texture(t_textures *texture, void *mlx);
 void			free_map(t_map *map, void *mlx);
 void			free_char_array(char **arr);
 int				free_n_return(char **str, char *temp, char *msg);
+void			free_t_data(t_data *data);
 
 // Utils
 void			mod_lst_it(t_map *map);
@@ -137,5 +141,6 @@ int				load_texture(t_texture *texture, void *mlx);
 t_textures		*parse_textures(t_map *map, void *mlx);
 t_map			*parse_map(char *path, void *mlx);
 t_player		*parse_player(t_map *map);
+t_data			*parse_data(char *path);
 
 #endif

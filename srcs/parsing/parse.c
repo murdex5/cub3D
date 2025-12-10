@@ -12,58 +12,49 @@
 
 #include "../../includes/cub3d.h"
 
-t_player	*init_player(void)
+t_data	*init_data(void)
 {
-	t_player	*player;
+	t_data	*data;
 
-	player = ft_calloc(sizeof(t_player), 1);
-	if (!player)
+	data = ft_calloc(sizeof(t_data), 1);
+	if (!data)
+		return (err_msg_std("T_data allocation failed"), NULL);
+	data->mlx = NULL;
+	data->win = NULL;
+	data->map = NULL;
+	data->player = NULL;
+	data->win_height = 0;
+	data->win_width = 0;
+	return (data);
+}
+int	init_mlx(void **mlx, void **win, int h, int w)
+{
+	*mlx = mlx_init();
+	if (!mlx)
+		return (err_msg_std("Initializing mlx failed"), 0);
+	*win = mlx_new_window(*mlx, w, h, "cub3D");
+	if (!win)
+		return (err_msg_std("Initializing win mlx failed"), free_mlx(*mlx), 0);
+	return (1);
+}
+
+t_data	*parse_data(char *path)
+{
+	t_data	*data;
+
+	data = init_data();
+	if (!data)
 		return (NULL);
-	player->dir_x = -1;
-	player->dir_y = -1;
-	player->pos_x = -1;
-	player->pos_y = -1;
-	return (player);
-}
-void	set_player_pos(size_t x, size_t y, t_player *player)
-{
-	player->pos_x = x;
-	player->pos_y = y;
-}
-
-void	get_player_pos_pl(t_map *map, t_player *player)
-{
-	int		map_len;
-	int		i;
-	size_t	temp_len;
-	size_t	j;
-
-	i = map->lst_itr;
-	map_len = str_arr_len(map->content);
-	temp_len = 0;
-	while (i < map_len)
-	{
-		j = 0;
-		temp_len = ft_strlen(map->content[i]);
-		while (j < temp_len)
-		{
-			if (is_present(map->content[i][j]))
-				return (set_player_pos(j, (size_t)i, player));
-			j++;
-		}
-		i++;
-	}
-}
-
-t_player	*parse_player(t_map *map)
-{
-	t_player *player;
-
-	player = init_player();
-	if (!player)
-		return (err_msg_std("Failed to Init player"), NULL);
-	get_player_pos_pl(map, player);
-	if (player->pos_x < 0 || player->pos_y < 0)
-		return (free(player), err_msg_std("Failed to parse player"), NULL);
-	return (player);
+	data->win_height = SCREEN_HEIGHT;
+	data->win_width = SCREEN_WIDTH;
+	if (!init_mlx(&data->mlx, &data->win, SCREEN_HEIGHT, SCREEN_WIDTH))
+		return (free_t_data(data), NULL);
+	data->map = parse_map(path, data->mlx);
+	if (!data->map)
+		return (free_t_data(data), NULL);
+	data->textures = data->map->textures;
+	data->player = parse_player(data->map);
+	if (!data->player)
+		return (free_t_data(data), NULL);
+	return (data);
 }

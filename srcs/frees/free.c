@@ -47,3 +47,32 @@ void	free_mlx(void *mlx)
 	else
 		return ;
 }
+
+void	free_win(void *win, void *mlx)
+{
+	if (!win)
+		return ;
+	mlx_destroy_window(mlx, win);
+	win = NULL;
+}
+void	free_player(t_player *player)
+{
+	if (!player)
+		return ;
+	free(player);
+}
+
+void	free_t_data(t_data *data)
+{
+	if (!data)
+		return ;
+	if (data->map && data->mlx)
+		free_map(data->map, data->mlx);
+	if (data->player)
+		free_player(data->player);
+	if (data->win)
+		free_win(data->mlx, data->win);
+	if (data->mlx)
+		free_mlx(data->mlx);
+	free(data);
+}

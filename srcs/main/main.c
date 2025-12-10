@@ -14,23 +14,14 @@
 
 int	main(int argc, char *argv[])
 {
-	t_map	*map;
-	void	*mlx;
-	// int sw;
-	// int sh;
-	t_player *player;
+	t_data	*data;
 
 	if (argc != 2)
 		return (ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1), 1);
-	// sw = 640;
-	// sh = 480;
-	mlx = mlx_init();
-	map = parse_map(argv[1], mlx);
-	if (!map)
-		return (free_mlx(mlx), 1);
-	player = parse_player(map);
-	free(player);
-	free_map(map, mlx);
-	free_mlx(mlx);
+	data = parse_data(argv[1]);
+	if (!data)
+		return (1);
+	mlx_loop(data->mlx);
+	free_t_data(data);
 	return (0);
 }
