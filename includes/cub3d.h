@@ -15,6 +15,8 @@
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/stat.h>
@@ -103,6 +105,8 @@ void			mulitiple_de_msg(char *path1, char *path2);
 
 // Freees
 void			free_mlx(void *mlx);
+void			free_player(t_player *player);
+void			free_mlx(void *mlx);
 void			free_texture(t_textures *texture, void *mlx);
 void			free_map(t_map *map, void *mlx);
 void			free_char_array(char **arr);
@@ -142,5 +146,8 @@ t_textures		*parse_textures(t_map *map, void *mlx);
 t_map			*parse_map(char *path, void *mlx);
 t_player		*parse_player(t_map *map);
 t_data			*parse_data(char *path);
+
+// hooks
+int				on_keypress(int keysym, t_data *data);
 
 #endif

@@ -17,11 +17,11 @@ int	main(int argc, char *argv[])
 	t_data	*data;
 
 	if (argc != 2)
-		return (ft_putstr_fd("Error\n Usage: ./cub3D <filename> \n", 1), 1);
+		return (ft_putstr_fd("Error\nUsage: ./cub3D <filename> \n", 1), 1);
 	data = parse_data(argv[1]);
 	if (!data)
 		return (1);
+	mlx_hook(data->win, KeyPress, KeyPressMask, on_keypress, data);
 	mlx_loop(data->mlx);
-	free_t_data(data);
 	return (0);
 }

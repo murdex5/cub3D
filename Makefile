@@ -28,6 +28,7 @@ SRCS = 	${SRCS_DIR}/errors/detailed_errors.c \
 		${SRCS_DIR}/parsing/parse_textures.c \
 		${SRCS_DIR}/parsing/parse_map.c \
 		${SRCS_DIR}/parsing/parse.c \
+		${SRCS_DIR}/main/hooks.c \
 		${SRCS_DIR}/main/main.c
 CFLAGS = -Wall -Werror -Wextra
 OBJS = ${SRCS:.c=.o}
