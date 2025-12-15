@@ -42,32 +42,9 @@ int	get_player_pos(t_map *map)
 		i++;
 	}
 	if (map->playr_count == 0)
-		return (err_msg_std("\nCouldn't find the player in the map\n"), detailed_err_msg_order(MAP_MSG), 0);
+		return (err_msg_std("\nCouldn't find the player in the map\n"),
+			detailed_err_msg_order(MAP_MSG), 0);
 	return (1);
-}
-
-int	count_lines(char *file)
-{
-	int		fd;
-	int		lines;
-	char	*line;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		perror("cub3D");
-		exit(0);
-	}
-	lines = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		lines++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (lines);
 }
 
 int	check_for_map(t_map *map, int lines, int i)
@@ -115,7 +92,7 @@ int	set_colors(t_map *map, int lines)
 		i++;
 	}
 	if (map->ceiling_color < 0 || map->floor_color < 0)
-		return ( detailed_err_msg_order(COLOR_NEG), 0);
+		return (detailed_err_msg_order(COLOR_NEG), 0);
 	if (!check_for_map(map, lines, k))
 		return (detailed_err_msg_order(EXPECTED_MSG), 0);
 	map->content_order = 2;

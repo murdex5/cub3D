@@ -12,20 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-void	free_char_array(char **arr)
-{
-	int	i;
-
-	if (arr == NULL)
-		return ;
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
 int	free_n_return(char **str, char *temp, char *msg)
 {
 	free_char_array(str);
@@ -55,6 +41,7 @@ void	free_win(void *win, void *mlx)
 	mlx_destroy_window(mlx, win);
 	win = NULL;
 }
+
 void	free_player(t_player *player)
 {
 	if (!player)

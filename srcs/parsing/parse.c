@@ -27,6 +27,7 @@ t_data	*init_data(void)
 	data->win_width = 0;
 	return (data);
 }
+
 int	init_mlx(void **mlx, void **win, int h, int w)
 {
 	*mlx = mlx_init();

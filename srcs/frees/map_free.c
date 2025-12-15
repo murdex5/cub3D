@@ -22,3 +22,18 @@ void	free_map(t_map *map, void *mlx)
 		free_texture(map->textures, mlx);
 	free(map);
 }
+
+void	free_char_array(char **arr)
+{
+	int	i;
+
+	if (arr == NULL)
+		return ;
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}

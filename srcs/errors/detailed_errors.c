@@ -31,7 +31,7 @@ int	read_files(char *file)
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
 		printf("%s\n", line);
-        free(line);
+		free(line);
 		i++;
 		line = get_next_line(fd);
 	}
@@ -55,7 +55,7 @@ void	detailed_err_msg_order(char *path)
 	}
 }
 
-void mulitiple_de_msg(char *path1, char *path2)
+void	mulitiple_de_msg(char *path1, char *path2)
 {
 	detailed_err_msg_order(path1);
 	detailed_err_msg_order(path2);

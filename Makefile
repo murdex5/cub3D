@@ -20,6 +20,7 @@ SRCS = 	${SRCS_DIR}/errors/detailed_errors.c \
 		${SRCS_DIR}/utils/check_map_utils.c \
 		${SRCS_DIR}/utils/parse_textures_utils.c \
 		${SRCS_DIR}/utils/parse_map_utils.c \
+		${SRCS_DIR}/utils/utils1.c \
 		${SRCS_DIR}/utils/utils.c \
 		${SRCS_DIR}/checks/check_map.c \
 		${SRCS_DIR}/checks/checks.c \

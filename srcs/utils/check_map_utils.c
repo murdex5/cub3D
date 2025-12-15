@@ -36,32 +36,6 @@ void	mod_lst_it(t_map *map)
 	}
 }
 
-int	check_whole_str(char *str)
-{
-	int		occr;
-	size_t	i;
-	size_t	len;
-
-	len = ft_strlen(str);
-	i = 0;
-	occr = 0;
-	while (i < len)
-	{
-		if (str[i] == ' ')
-		{
-			i++;
-			continue ;
-		}
-		else if (check_just_chars(str[i]))
-			occr++;
-		i++;
-	}
-	if (occr >= 1)
-		return (1);
-	else
-		return (0);
-}
-
 void	get_h_w(t_map *map)
 {
 	int	i;
@@ -100,4 +74,13 @@ int	check_just_chars(char c)
 	if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		return (1);
 	return (0);
+}
+
+void	set_map_details(t_map *map, char **map_copy, int j)
+{
+	map_copy[j] = NULL;
+	free_char_array(map->content);
+	map->content = NULL;
+	map->content = map_copy;
+	map->height = j;
 }

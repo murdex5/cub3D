@@ -105,3 +105,32 @@ int	check_map(t_map *map)
 	map->content_order = 3;
 	return (1);
 }
+
+int	has_holes(char **map)
+{
+	int	arr_len;
+	int	i;
+
+	arr_len = str_arr_len_eof(map);
+	i = 0;
+	while (i < arr_len)
+	{
+		if (check_instances(map[i]))
+		{
+			if (!check_zero(map, map[i], i))
+				return (0);
+		}
+		i++;
+	}
+	i = 0;
+	while (i < arr_len)
+	{
+		if (check_instances(map[i]))
+		{
+			if (!check_holes(map, map[i], i))
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}

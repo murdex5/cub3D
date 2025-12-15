@@ -25,6 +25,7 @@ t_player	*init_player(void)
 	player->pos_y = -1;
 	return (player);
 }
+
 void	set_player_pos(size_t x, size_t y, t_player *player)
 {
 	player->pos_x = x;

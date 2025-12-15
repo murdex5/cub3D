@@ -47,39 +47,14 @@ int	check_if_null_text(t_textures *textures)
 
 int	str_arr_len(char **str)
 {
-    int	i;
-
-    i = 0;
-    if (!str)
-        return (0);
-    while (str[i])
-    {
-        i++;
-    }
-    return (i);
-}
-
-int	is_present(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	return (0);
-}
-
-int	str_arr_len_EOF(char **str)
-{
-	int i;
+	int	i;
 
 	i = 0;
-	if (!str || !*str)
+	if (!str)
 		return (0);
 	while (str[i])
 	{
-		//printf("%s\n", str[i]);
-		if (str[i][0] == '\n')
-			printf("%c\n", str[i][0]);
 		i++;
 	}
-
 	return (i);
 }

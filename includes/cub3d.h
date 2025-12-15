@@ -126,11 +126,15 @@ int				get_player_pos(t_map *map);
 int				count_lines(char *file);
 int				is_present(char c);
 int				str_arr_len(char **str);
-int				str_arr_len_EOF(char **str);
+int				str_arr_len_eof(char **str);
 int				check_if_null_text(t_textures *textures);
 int				ft_strcmp(const char *s1, const char *s2);
+void			set_map_details(t_map *map, char **map_copy, int j);
+int				check_whole_str(char *str);
 
 // Checks
+int				check_instances(char *line);
+int				check_zero(char **map, char *line, int k);
 int				check_holes(char **map, char *line, int k);
 int				has_holes(char **map);
 int				check_loaded(t_textures *textures);

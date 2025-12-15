@@ -31,15 +31,9 @@ int	check_file_type(char *file, char *type)
 	}
 	dot[j] = '\0';
 	if (ft_strncmp(dot, type, ft_strlen(type)) == 0)
-	{
-		free(dot);
-		return (1);
-	}
+		return (free(dot), 1);
 	else
-	{
-		free(dot);
-		return (0);
-	}
+		return (free(dot), 0);
 }
 
 int	check_loaded(t_textures *textures)
@@ -110,35 +104,6 @@ int	check_holes(char **map, char *line, int k)
 			if (i < prev_len && i < next_len && (map[k - 1][i] == '0' || map[k
 					- 1][i] == '1') && (map[k + 1][i] == '0' || map[k
 					+ 1][i] == '1'))
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	has_holes(char **map)
-{
-	int	arr_len;
-	int	i;
-
-	arr_len = str_arr_len_EOF(map);
-	i = 0;
-	while (i < arr_len)
-	{
-		if (check_instances(map[i]))
-		{
-			if (!check_zero(map, map[i], i))
-				return (0);
-		}
-		i++;
-	}
-	i = 0;
-	while (i < arr_len)
-	{
-		if (check_instances(map[i]))
-		{
-			if (!check_holes(map, map[i], i))
 				return (0);
 		}
 		i++;

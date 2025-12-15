@@ -104,11 +104,7 @@ int	get_just_map(t_map *map)
 		i++;
 		j++;
 	}
-	map_copy[j] = NULL;
-	free_char_array(map->content);
-	map->content = NULL;
-	map->content = map_copy;
-	map->height = j;
+	set_map_details(map, map_copy, j);
 	return (1);
 }
 
