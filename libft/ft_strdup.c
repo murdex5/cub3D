@@ -3,38 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 15:31:02 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 15:31:05 by kadferna         ###   ########.fr       */
+/*   Created: 2024/01/12 10:59:04 by msisto            #+#    #+#             */
+/*   Updated: 2024/01/17 10:50:19 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s1)
 {
-	int		i;
-	int		j;
-	char	*str;
+	char	*r;
+	size_t	in;
+	size_t	cp;
 
-	i = 0;
-	j = ft_strlen(s);
-	str = (char *)malloc(sizeof(*str) * (j + 1));
-	if (!str)
+	in = 0;
+	cp = 0;
+	while (s1[in] != '\0')
+		in++;
+	r = (char *)malloc((in + 1) * sizeof(char));
+	if (r == NULL)
 		return (NULL);
-	while (i < j)
+	while (cp < in)
 	{
-		str[i] = s[i];
-		i++;
+		r[cp] = s1[cp];
+		cp++;
 	}
-	str[i] = '\0';
-	return (str);
+	r[cp] = '\0';
+	return (r);
 }
-/*
-int	main(void)
-{
-	char *str = "Hello";
-	char *cop = ft_strdup(str);
-	printf("%s \n", cop);
-	return (0);
-}*/

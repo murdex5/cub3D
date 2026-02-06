@@ -3,45 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 17:12:46 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 17:12:50 by kadferna         ###   ########.fr       */
+/*   Created: 2024/01/12 11:36:29 by msisto            #+#    #+#             */
+/*   Updated: 2024/01/17 14:59:01 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	int		i;
-	int		j;
-	char	*str;
+	int		c;
+	int		len;
+	char	*fstr;
 
-	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (str == NULL)
-		return (NULL);
-	while (s1[i] != '\0')
+	if (s1 && s2)
 	{
-		str[i] = s1[i];
-		i++;
+		i = ft_strlen(s1);
+		c = ft_strlen(s2);
+		fstr = (char *)malloc((i + c + 1) * sizeof(char));
+		if (fstr == NULL)
+			return (NULL);
+		len = -1;
+		while (s1[++len])
+			fstr[len] = s1[len];
+		len = -1;
+		while (s2[++len])
+		{
+			fstr[i] = s2[len];
+			i++;
+		}
+		fstr[i] = '\0';
+		return (fstr);
 	}
-	while (s2[j] != '\0')
-	{
-		str[i + j] = s2[j];
-		j++;
-	}
-	str[i + j] = '\0';
-	return (str);
+	return (NULL);
 }
-
-/*
-int	main(void)
-{
-	char    *str1 = "Hello ";
-	char    *str2 = "wolrd!";
-	char *full = ft_strjoin(str1, str2);
-	printf("%s\n", full);
-	return (0);
-}*/

@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpm.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 12:21:33 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 12:30:01 by kadferna         ###   ########.fr       */
+/*   Created: 2024/01/09 11:29:09 by msisto            #+#    #+#             */
+/*   Updated: 2024/01/11 09:49:49 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
-
-static void	cause_segfault(void)
-{
-	char	*ptr;
-
-	ptr = 0;
-	*ptr = *ptr;
-}
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t			i;
-	unsigned char	*str1;
-	unsigned char	*str2;
+	size_t			in;
+	int				re;
 
-	if (!s1 && !s2)
-		cause_segfault();
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	i = 0;
-	while (i < n)
+	in = 0;
+	while (in < n)
 	{
-		if (str1[i] != str2[i])
-			return (str1[i] - str2[i]);
-		i++;
+		if (((unsigned char *)s1)[in] != ((unsigned char *)s2)[in])
+		{
+			re = ((unsigned char *)s1)[in] - ((unsigned char *)s2)[in];
+			return (re);
+		}
+		in++;
 	}
 	return (0);
 }

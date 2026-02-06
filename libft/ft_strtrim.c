@@ -3,59 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>               +#+  +:+       +#+        */
+/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 18:57:39 by malshapraboth     #+#    #+#             */
-/*   Updated: 2024/12/12 18:57:41 by malshapraboth    ###   ########.fr       */
+/*   Created: 2024/01/12 12:33:02 by msisto            #+#    #+#             */
+/*   Updated: 2024/01/18 14:02:03 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-static int	isin(char c, char const *set)
+static int	char_in_set(char val, const char *set)
 {
-	int	i;
-
-	i = 0;
-	while (set[i] != '\0')
+	while (*set)
 	{
-		if (set[i] == c)
-		{
+		if (*set == val)
 			return (1);
-		}
-		i++;
+		set++;
 	}
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	char	*result;
+	int		len;
 	size_t	start;
 	size_t	end;
-	size_t	trim_len;
+	char	*str;
 
 	if (!s1 || !set)
 		return (NULL);
-	start = 0;
-	while (s1[start] && isin(s1[start], set))
-		start++;
 	end = ft_strlen(s1);
-	while (end > start && isin(s1[end - 1], set))
+	start = 0;
+	len = 0;
+	while (s1[start] && char_in_set(s1[start], set))
+		start++;
+	while (end > start && char_in_set(s1[end - 1], set))
 		end--;
-	trim_len = end - start;
-	result = malloc(sizeof(char) * (trim_len + 1));
-	if (!result)
+	str = (char *)malloc((end - start + 1) * sizeof(char));
+	if (str == NULL)
 		return (NULL);
-	ft_memmove(result, s1 + start, trim_len);
-	result[trim_len] = '\0';
-	return (result);
+	while (start < end)
+		str[len++] = s1[start++];
+	str[len] = '\0';
+	return (str);
 }
-/*
-int	main(void)
-{
-	char *str = "Hello, World!";
-	char *charset = ", !l";
-	char *modstr = ft_strtrim(str, charset);
-	printf("%s\n", modstr);
-	return (0);
-}*/

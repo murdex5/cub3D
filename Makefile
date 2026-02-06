@@ -1,78 +1,54 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: kadferna <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/17 14:25:48 by kadferna          #+#    #+#              #
-#    Updated: 2025/11/17 14:25:49 by kadferna         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-CC = gcc
-SRCS_DIR = ./srcs
-SRCS = 	${SRCS_DIR}/errors/detailed_errors.c \
-		${SRCS_DIR}/errors/errors.c \
-		${SRCS_DIR}/frees/textures_free.c \
-		${SRCS_DIR}/frees/map_free.c \
-		${SRCS_DIR}/frees/free.c \
-		${SRCS_DIR}/utils/check_map_utils.c \
-		${SRCS_DIR}/utils/parse_textures_utils.c \
-		${SRCS_DIR}/utils/parse_map_utils.c \
-		${SRCS_DIR}/utils/utils1.c \
-		${SRCS_DIR}/utils/utils.c \
-		${SRCS_DIR}/checks/check_map.c \
-		${SRCS_DIR}/checks/checks.c \
-		${SRCS_DIR}/parsing/parse_player.c \
-		${SRCS_DIR}/parsing/parse_colors.c \
-		${SRCS_DIR}/parsing/parse_textures.c \
-		${SRCS_DIR}/parsing/parse_map.c \
-		${SRCS_DIR}/parsing/parse.c \
-		${SRCS_DIR}/main/hooks.c \
-		${SRCS_DIR}/main/main.c
-CFLAGS = -Wall -Werror -Wextra
-OBJS = ${SRCS:.c=.o}
-OBJS = ${SRCS:.c=.o}
-
-# LIBFT	
-LIBFT_PATH = ./libft
-LIBFT_LIB  = $(LIBFT_PATH)/libft.a
-
-# MLX
-MLX_PATH = ./mlx
-MLX_LIB	 = $(MLX_PATH)/libmlx.a
-
 NAME = cub3D
 
-ifeq ($(shell uname), Linux)
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
-	MLX_INCLUDES = -I/usr/include -Imlx
-else
-	MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-	MLX_INCLUDES = -I/opt/X11/include -Imlx
-endif
+FLAGS = -Wall -Wextra -Werror
 
-all: subsystems $(NAME) 
+LIBFT_PATH = ./libft
 
-%.o : %.c
-	$(CC) $(CFLAGS)  $(MLX_INCLUDES) -O3 -c -o $@ $<
+LIBFT = $(LIBFT_PATH)/libft.a
 
-subsystems:
-	@make -C $(LIBFT_PATH) all
-	@make -C $(MLX_PATH) all
+MINILIBX_PATH = ./mlx
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(MLX_LIB) $(LIBFT_LIB) -o $(NAME)
+MINILIBX = $(MINILIBX_PATH)/libmlx.a
+
+CC = gcc
+
+SRC = main/main.c main/hook.c \
+		movement/player_dir.c movement/player_rotate.c movement/input.c movement/player_move.c movement/player_check.c \
+		init/datasetup.c init/mlx_setup.c init/texture_setup.c\
+		checks/check_map.c checks/checks.c \
+		parser/parse_colors.c parser/parse.c parser/parse_map.c parser/parse_texture.c parser/parse_player.c \
+		render/texture.c render/render.c render/raycast.c \
+		utils/check_map_utils.c utils/utils.c utils/utils_2.c utils/parse_map_utils.c utils/get_next_line.c \
+		frees/free.c \
+		errors/errors.c errors/detailed_errors.c \
+
+OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ) $(LIBFT) $(MINILIBX)
+		$(CC) $(OBJ) $(FLAGS) \
+		$(LIBFT) \
+		$(MINILIBX_PATH)/libmlx_Linux.a \
+		-L/usr/lib -lXext -lX11 -lm -lz \
+		-o $(NAME)
 
 clean:
-	rm -rf $(OBJS)
+		rm -f $(OBJ)
+		$(MAKE) -C $(MINILIBX_PATH) clean
+		$(MAKE) -C $(LIBFT_PATH) clean
 
 fclean: clean
-	@make -C $(LIBFT_PATH) fclean
-	@make -C $(MLX_PATH) clean
-	rm -rf $(NAME)
+		rm -f $(NAME)
+		$(MAKE) -C $(LIBFT_PATH) fclean
 
 re: fclean all
 
-.PHONY: all clean fclean re subsytems
+%.o: %.c
+		$(CC) $(FLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+
+$(MINILIBX):
+		$(MAKE) -C $(MINILIBX_PATH)
+
+$(LIBFT):
+		$(MAKE) -C $(LIBFT_PATH)

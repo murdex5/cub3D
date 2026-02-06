@@ -1,1 +1,0 @@
-# cub3D - Only Parser

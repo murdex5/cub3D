@@ -1,0 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_move.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/23 14:22:53 by msisto            #+#    #+#             */
+/*   Updated: 2026/01/26 13:23:46 by msisto           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../cub3D.h"
+
+int	move_forward(t_data *data)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = data->player.pos_x + data->player.dir_x * MOVSPEED;
+	new_y = data->player.pos_y + data->player.dir_y * MOVSPEED;
+	return (validate_move(data, new_x, new_y));
+}
+
+int	move_backward(t_data *data)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = data->player.pos_x - data->player.dir_x * MOVSPEED;
+	new_y = data->player.pos_y - data->player.dir_y * MOVSPEED;
+	return (validate_move(data, new_x, new_y));
+}
+
+int	move_left(t_data *data)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = data->player.pos_x + data->player.dir_y * MOVSPEED;
+	new_y = data->player.pos_y - data->player.dir_x * MOVSPEED;
+	return (validate_move(data, new_x, new_y));
+}
+
+int	move_right(t_data *data)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = data->player.pos_x - data->player.dir_y * MOVSPEED;
+	new_y = data->player.pos_y + data->player.dir_x * MOVSPEED;
+	return (validate_move(data, new_x, new_y));
+}
+
+int	move_player(t_data *data)
+{
+	int	moved;
+
+	moved = 0;
+	if (data->player.rotate != 0)
+		moved += rotate_player(data, data->player.rotate);
+	if (data->player.move_y == 1)
+		moved += move_forward(data);
+	if (data->player.move_y == -1)
+		moved += move_backward(data);
+	if (data->player.move_x == -1)
+		moved += move_left(data);
+	if (data->player.move_x == 1)
+		moved += move_right(data);
+	return (moved);
+}

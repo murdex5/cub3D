@@ -3,49 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 12:36:49 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/13 12:36:51 by kadferna         ###   ########.fr       */
+/*   Created: 2024/01/12 14:13:26 by msisto            #+#    #+#             */
+/*   Updated: 2024/01/25 10:44:26 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*result;
+	char			*str;
 	unsigned int	i;
 
-	i = 0;
-	if (!s)
+	if (s == NULL || f == NULL)
 		return (NULL);
-	result = malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (!result)
+	i = (unsigned int)ft_strlen(s) + 1;
+	str = ft_calloc(i, sizeof(char));
+	if (!str)
 		return (NULL);
-	while (s[i] != '\0')
+	i = -1;
+	while (s[++i])
 	{
-		result[i] = (*f)(i, s[i]);
-		i++;
+		str[i] = (*f)(i, (char)s[i]);
 	}
-	result[i] = '\0';
-	return (result);
+	return (str);
 }
-/*
-int	main(void) {
-	// Test input string
-	char *original = "hello";
-
-	// Call ft_strmapi with the test function
-	char *result = ft_strmapi(original, test_function);
-
-	// Check the result and print it
-	if (result) {
-		printf("Original string: %s\n", original);
-		printf("Transformed string: %s\n", result);
-		free(result); // Free the allocated memory
-	} else {
-		printf("Memory allocation failed.\n");
-	}
-
-	return (0);
-}*/

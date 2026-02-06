@@ -3,50 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 14:37:15 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 14:37:18 by kadferna         ###   ########.fr       */
+/*   Created: 2024/01/10 14:40:22 by msisto            #+#    #+#             */
+/*   Updated: 2024/01/25 12:05:39 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+static int	exclude(char s)
 {
-	int	i;
-	int	sign;
-	int	result;
-
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (result * sign);
-}
-/*
-#include <stdio.h>
-int	main(int ac, char **av)
-{
-	if (ac != 2)
-	{
+	if (s == ' ' || s == '\t' || s == '\n'
+		|| s == '\r' || s == '\f' || s == '\v')
 		return (1);
-	}
 	else
+		return (0);
+}
+
+int	ft_atoi(const char *str)
+{
+	long int	num;
+	int			seg;
+
+	seg = 0;
+	num = 0;
+	while (exclude(*str) == 1)
+		str++;
+	if (*str == '+' || *str == '-')
 	{
-		printf("%d \n", ft_atoi(av[1]));
-		printf("%d \n", atoi(av[1]));
+		if (*str == '-')
+			seg = 1;
+		str++;
 	}
-	return 0;
-}*/
+	while (*str >= '0' && *str <= '9')
+	{
+		if (num * 10 < 0)
+			return (-1);
+		num = (num * 10) + (*str - '0');
+		str++;
+	}
+	if (seg == 1)
+		num = -num;
+	return (num);
+}

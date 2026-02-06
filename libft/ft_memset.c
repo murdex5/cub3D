@@ -3,38 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 11:02:12 by kadferna          #+#    #+#             */
-/*   Updated: 2024/12/11 11:02:15 by kadferna         ###   ########.fr       */
+/*   Created: 2024/01/09 10:34:57 by msisto            #+#    #+#             */
+/*   Updated: 2024/01/15 13:15:28 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char	*p;
-	size_t			i;
+	char	*s;
+	size_t	i;
 
-	if (n == 0)
-		return (s);
+	s = NULL;
+	s = (char *)b;
 	i = 0;
-	p = (unsigned char *)s;
-	while (i < n)
+	while (i < len)
 	{
-		p[i] = (unsigned char)c;
+		s[i] = c;
 		i++;
 	}
-	return (s);
+	return (b);
 }
-/*
-#include <stdio.h>
-
-int	main(void) {
-	char buffer[10];
-	ft_memset(buffer, 9, sizeof(buffer));  // Sets all 10 bytes of 'buffer' to 0
-	for(size_t i = 0; i < sizeof(buffer); i++)
-		printf("%d ", buffer[i]);
-	return (0);
-}*/
