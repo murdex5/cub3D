@@ -6,7 +6,7 @@
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:12:45 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/06 12:43:29 by kadferna         ###   ########.fr       */
+/*   Updated: 2026/02/06 12:54:09 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	free_n_return(char **str, char *temp, char *msg)
 
 void free_n_err_file(t_data *data, int lvl, char *msg, char *file_path)
 {
-	err_msg_std(msg);
+	if (msg)
+		err_msg_std(msg);
 	detailed_err_msg_order(file_path);
 	free_exit(data, lvl, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:29:39 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/06 12:39:24 by kadferna         ###   ########.fr       */
+/*   Updated: 2026/02/06 13:06:47 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	check_valid_chars(t_map *map_info)
 			c = map_info->content[i][j];
 			if (!check_one(c))
 			{
-				printf("Invalid char: %c\n", c);
+				printf("ERROR\nInvalid char: %c\n", c);
 				return (0);
 			}
 			j++;
@@ -97,7 +97,7 @@ void	check_map(t_data *data, t_map *map_info)
 	if (map_info->content_order != 2)
 		free_exit(data, 3, NULL);
 	if (!check_surrounded(map_info))
-		free_n_err_file(data, 3, "The maps is not surrounded", MAP_MSG);
+		free_n_err_file(data, 3, "The maps is not surrounded\n", MAP_MSG);
 	if (!check_valid_chars(map_info))
 		free_n_err_file(data, 3, NULL, MAP_MSG);
 	if (!has_holes(map_info->content))
