@@ -1,12 +1,12 @@
-ERROR: Colour definition out of order
+[91mERROR: Colour definition out of order[0m
 
 Colours must be defined after textures and before map data.
 
-Expected format:
+[93mExpected format:[0m
   F R,G,B    <- Floor colour (e.g., F 220,100,0)
   C R,G,B    <- Ceiling colour (e.g., C 225,30,0)
 
-Rules:
+[93mRules:[0m
   • RGB values must be integers between 0 and 255.
   • Both floor (F) and ceiling (C) must be defined.
   • No duplicate definitions allowed.

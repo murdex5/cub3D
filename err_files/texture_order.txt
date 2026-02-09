@@ -1,34 +1,34 @@
-ERROR: Invalid texture configuration
+[91mERROR: Invalid texture configuration[0m
 
 Texture definitions must appear first in the configuration file.
 
-Expected format:
-  ┌─────────────────────────────────────────┐
-  │  NO ./path/to/north.xpm                 │
-  │  SO ./path/to/south.xpm                 │
-  │  WE ./path/to/west.xpm                  │
-  │  EA ./path/to/east.xpm                  │
-  └─────────────────────────────────────────┘
+[93mExpected format:[0m
+[96m┌─────────────────────────────────────────┐[0m
+[96m  │[0m  [95mNO[0m ./path/to/north.xpm                 [96m│[0m
+[96m  │[0m  [95mSO[0m ./path/to/south.xpm                 [96m│[0m
+[96m  │[0m  [95mWE[0m ./path/to/west.xpm                  [96m│[0m
+[96m  │[0m  [95mEA[0m ./path/to/east.xpm                  [96m│[0m
+[96m  └─────────────────────────────────────────┘[0m
 
-Texture identifiers:
-  NO    <- North wall texture
-  SO    <- South wall texture
-  WE    <- West wall texture
-  EA    <- East wall texture
+[93mTexture identifiers:[0m
+  [95mNO[0m    <- North wall texture
+  [95mSO[0m    <- South wall texture
+  [95mWE[0m    <- West wall texture
+  [95mEA[0m    <- East wall texture
 
-Examples of valid definitions:
-  ✓ NO ./textures/north.xpm
-  ✓ SO textures/south.xpm
-  ✓ WE ../assets/west.xpm
+[92mExamples of valid definitions:[0m
+  [32m✓ [95mNO[0m ./textures/north.xpm[0m
+  [32m✓ [95mSO[0m textures/south.xpm[0m
+  [32m✓ [95mWE[0m ../assets/west.xpm[0m
 
-Examples of invalid definitions:
-  ✗ NO                        <- Missing file path
-  ✗ NORTH ./textures/n.xpm    <- Invalid identifier
-  ✗ NO ./textures/north.png   <- Invalid file extension
-  ✗ NO ./invalid/path.xpm     <- File does not exist
+[91mExamples of invalid definitions:[0m
+  [31m✗ [95mNO[90m                        <- Missing file path[0m
+  [31m✗ [31mNORTH[90m ./textures/n.xpm    <- Invalid identifier[0m
+  [31m✗ [95mNO[0m ./textures/north.png[90m   <- Invalid file extension[0m
+  [31m✗ [95mNO[0m ./invalid/path.xpm[90m     <- File does not exist[0m
 
-Rules:
-  • All four textures (NO, SO, WE, EA) must be defined.
+[93mRules:[0m
+  • All four textures ([95mNO[0m, [95mSO[0m, [95mWE[0m, [95mEA[0m) must be defined.
   • Each texture path must point to a valid .xpm file.
   • No duplicate texture definitions allowed.
   • Textures must be defined before colours and map data.
