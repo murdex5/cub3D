@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 14:23:38 by msisto            #+#    #+#             */
-/*   Updated: 2026/01/30 15:03:21 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/06 12:35:16 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	*xpm_to_img(t_data *data, char *path)
 	buffer = ft_calloc(1,
 			sizeof * buffer * data->texture.size * data->texture.size);
 	if (!buffer)
-		free_exit(data, 3, "Could not allocate memory");
+		free_exit(data, 3, "Error\nCould not allocate memory");
 	y = 0;
 	while (y < data->texture.size)
 	{
@@ -44,7 +44,7 @@ void	init_textures(t_data *data)
 {
 	data->textures = ft_calloc(5, sizeof * data->textures);
 	if (!data->textures)
-		free_exit(data, 3, "Could not allocate memory");
+		free_exit(data, 3, "Error\nCould not allocate memory");
 	data->textures[NORTH] = xpm_to_img(data, data->texture.north);
 	data->textures[SOUTH] = xpm_to_img(data, data->texture.south);
 	data->textures[EAST] = xpm_to_img(data, data->texture.east);

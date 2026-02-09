@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:24:17 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/02 13:24:01 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/09 11:16:46 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	get_just_map(t_data *data, t_map *map_info)
 		free_exit(data, 3, NULL);
 	data->map = ft_calloc(sizeof(char *), actual_lines + 1);
 	if (!data->map)
-		free_exit(data, 3, "Could not allocate memory");
+		free_exit(data, 3, "Error\nCould not allocate memory");
 	j = 0;
 	while (i < arr_len && map_info->content[i])
 	{
@@ -97,7 +97,7 @@ void	parse_map(t_data *data, char *path)
 	struct stat	buffer;
 
 	if (!check_file_type(path, ".cub"))
-		free_exit(data, 1, "Not a .cub file");
+		free_err_file(data, 1, "Wrong file type! expected type .cub", MAP_MSG);
 	if (stat(path, &buffer) != 0)
 	{
 		printf("Error\nFile not found %s\n", path);
@@ -108,5 +108,5 @@ void	parse_map(t_data *data, char *path)
 	check_map(data, &data->map_info);
 	get_just_map(data, &data->map_info);
 	if (!data->texture.ceiling || !data->texture.floor)
-		free_exit(data, 3, "Invalid color\n");
+		free_err_file(data, 3, "Invalid color\n", COLOR_MSG);
 }

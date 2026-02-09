@@ -15,8 +15,6 @@ Texture identifiers:
   SO    <- South wall texture
   WE    <- West wall texture
   EA    <- East wall texture
-  
-Note: The textures does not have to be in order like in the example.
 
 Examples of valid definitions:
   ✓ NO ./textures/north.xpm

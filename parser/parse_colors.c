@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:28:40 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/02 12:44:58 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/06 15:15:59 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	*get_color(char *line)
 	free_tab((void **)color_split);
 	if ((rgb[0] < 0 || rgb[0] > 255) || (rgb[1] < 0 || rgb[1] > 255)
 		|| (rgb[2] < 0 || rgb[2] > 255))
-		return (free(rgb), NULL);
+		return (detailed_err_msg_order(COLOR_NEG), free(rgb), NULL);
 	return (rgb);
 }
 

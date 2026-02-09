@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:16:14 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/02 12:57:33 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/09 11:25:18 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,4 @@ void	parse_player(t_data *data)
 	player_setup(&data->player);
 	get_player_pos_pl(&data->player, data->map);
 }
+

@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 13:56:54 by msisto            #+#    #+#             */
-/*   Updated: 2026/01/19 14:37:07 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/06 15:18:58 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	assign_paths(char **content, int i, t_texture *texture)
 	free_tab((void **)split_result);
 }
 
-void	get_text_path(t_map *map, t_texture *texture)
+void	get_text_path(t_data *data, t_map *map, t_texture *texture)
 {
 	int		lines;
 	int		i;
@@ -46,10 +46,13 @@ void	get_text_path(t_map *map, t_texture *texture)
 		assign_paths(map->content, i, texture);
 		i++;
 	}
+	if (!texture->north || !texture->south
+		|| !texture->west || !texture->east)
+		free_err_file(data, 3, NULL, TEXTURE_MSG);
 	map->content_order = 1;
 }
 
 void	parse_textures(t_data *data)
 {
-	get_text_path(&data->map_info, &data->texture);
+	get_text_path(data, &data->map_info, &data->texture);
 }
