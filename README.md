@@ -1,7 +1,7 @@
 # 🎮 Cub3D
 
 <div align="center">
-  <img height="200" src="./cat-8066816.jpg"/>
+  <img height="200" src="https://github.com/murdex5/cub3D/blob/main/ex_imgs/Screenshot%20from%202026-02-09%2013-58-00.png?raw=true/>
 </div>
 <div align="center">
 
