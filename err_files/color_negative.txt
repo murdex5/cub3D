@@ -1,26 +1,27 @@
-ERROR: Invalid colour value
+[91mERROR: Invalid colour value[0m
 
 Colour values must be positive integers between 0 and 255.
 
-Expected format:
+[93mExpected format:[0m
   ┌─────────────────────────────────────────┐
-  │  F 220,100,0     <- Floor colour        │
-  │  C 225,30,0      <- Ceiling colour      │
+  │  [96mF 220,100,0[0m     <- Floor colour        │
+  │  [96mC 225,30,0[0m      <- Ceiling colour      │
   └─────────────────────────────────────────┘
 
-Examples of valid values:
-  ✓ F 220,100,0
-  ✓ C 255,255,255
-  ✓ F 0,0,0
+[92mExamples of valid values:[0m
+  [32m✓ F 220,100,0[0m
+  [32m✓ C 255,255,255[0m
+  [32m✓ F 0,0,0[0m
 
-Examples of invalid values:
-  ✗ F -220,100,0     <- Negative values not allowed
-  ✗ C 225,-30,0      <- Negative values not allowed
-  ✗ F 256,100,0      <- Value exceeds 255
-  ✗ C 225,300,0      <- Value exceeds 255
+[91mExamples of invalid values:[0m
+  [31m✗ F -220,100,0[90m     <- Negative values not allowed[0m
+  [31m✗ C 225,-30,0[90m      <- Negative values not allowed[0m
+  [31m✗ F 256,100,0[90m      <- Value exceeds 255[0m
+  [31m✗ C 225,300,0[90m      <- Value exceeds 255[0m
 
-Rules:
+[93mRules:[0m
   • Each RGB component must be between 0 and 255.
   • No negative values allowed.
   • No decimal values allowed.
   • Format must be: R,G,B (comma-separated, no spaces).
+  

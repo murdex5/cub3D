@@ -6,7 +6,7 @@
 #    By: kadferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 12:05:49 by kadferna          #+#    #+#              #
-#    Updated: 2026/01/26 12:05:51 by kadferna         ###   ########.fr        #
+#    Updated: 2026/02/09 12:02:43 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,12 +24,14 @@ BRIGHT_WHITE='\033[1;37m'
 
 RESET='\033[0m'
 
+# -r will remove the binary
 if [ "$1" = "-r" ]; then
     make -s fclean
     echo -e "${BRIGHT_GREEN}Cub3D is removed.${RESET}"
     exit 0
 fi
 
+# Checking the requiremtns
 if command -v git > /dev/null 2>&1; then
     echo -e "${BRIGHT_GREEN}Git is installed.${RESET}"
     echo -e "${BRIGHT_YELLOW}Git version: $(git --version).${RESET}"
@@ -38,6 +40,8 @@ else
     echo -e "${BRIGHT_YELLOW}Please install Git to your device.${RESET}"
     exit 1
 fi
+
+# Pulling the mlx lib from linux
 
 if [ -d "$mlx"  ]; then
     echo -e "${BRIGHT_CYAN}mlx directory exists.Checking if it's a valid git repository...${RESET}"
@@ -56,6 +60,7 @@ else
     git clone https://github.com/42paris/minilibx-linux.git mlx
 fi
 
+# Compiling the prgrame
 echo -e "${BRIGHT_YELLOW}Compiling the programme...${RESET}"
 make -s all
 if [ $? -ne 0  ]; then

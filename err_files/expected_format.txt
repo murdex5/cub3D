@@ -1,25 +1,25 @@
-ERROR: Invalid configuration order
+[91mERROR: Invalid configuration order[0m
 
-Expected format:
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ 01. Textures         <- Must appear first                                   │
-│     ├── NO ./path/to/north.xpm                                              │
-│     ├── SO ./path/to/south.xpm                                              │
-│     ├── WE ./path/to/west.xpm                                               │
-│     └── EA ./path/to/east.xpm                                               │
-│                                                                             │
-│ 02. Colours          <- Must appear second                                  │
-│     ├── F 220,100,0                                                         │
-│     └── C 225,30,0                                                          │
-│                                                                             │
-│ 03. Map              <- Must appear last                                    │
-│     ├── 111111                                                              │
-│     ├── 100001                                                              │
-│     ├── 10N001                                                              │
-│     └── 111111                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
+[93mExpected format:[0m
+[96m┌─────────────────────────────────────────────────────────────────────────────┐[0m
+[96m│[0m 01. Textures         <- Must appear first                                   [96m│[0m
+[96m│[0m     ├── NO ./path/to/north.xpm                                              [96m│[0m
+[96m│[0m     ├── SO ./path/to/south.xpm                                              [96m│[0m
+[96m│[0m     ├── WE ./path/to/west.xpm                                               [96m│[0m
+[96m│[0m     └── EA ./path/to/east.xpm                                               [96m│[0m
+[96m│[0m                                                                             [96m│[0m
+[96m│[0m 02. Colours          <- Must appear second                                  [96m│[0m
+[96m│[0m     ├── F 220,100,0                                                         [96m│[0m
+[96m│[0m     └── C 225,30,0                                                          [96m│[0m
+[96m│[0m                                                                             [96m│[0m
+[96m│[0m 03. Map              <- Must appear last                                    [96m│[0m
+[96m│[0m     ├── 111111                                                              [96m│[0m
+[96m│[0m     ├── 100001                                                              [96m│[0m
+[96m│[0m     ├── 10N001                                                              [96m│[0m
+[96m│[0m     └── 111111                                                              [96m│[0m
+[96m└─────────────────────────────────────────────────────────────────────────────┘[0m
 
-Requirements:
+[93mRequirements:[0m
   • All texture paths must point to valid .xpm files.
   • RGB values must be between 0 and 255.
   • Map must be enclosed by walls and contain exactly one player position.
