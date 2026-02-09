@@ -1,6 +1,9 @@
 # 🎮 Cub3D
 
 <div align="center">
+  <img height="200" src="./cat-8066816.jpg"/>
+</div>
+<div align="center">
 
 ![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
 ![Make](https://img.shields.io/badge/Make-C1302E?style=for-the-badge&logo=gnu&logoColor=white)
