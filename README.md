@@ -197,7 +197,7 @@ cub3D/
 ├── maps/            # Map files
 │   ├── good_maps/   # Valid example maps
 │   └── error_maps/  # Invalid maps for testing
-├── mlx/             # MiniLibX library (submodule)
+├── mlx/             # MiniLibX library (submodule) // This directory will be automatically installed during the installation 
 ├── movement/        # Player movement and rotation
 ├── parser/          # Map and configuration parsing
 ├── render/          # Ray-casting and rendering
