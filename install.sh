@@ -6,7 +6,7 @@
 #    By: kadferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 12:05:49 by kadferna          #+#    #+#              #
-#    Updated: 2026/02/09 13:49:32 by kadferna         ###   ########.fr        #
+#    Updated: 2026/02/10 08:30:09 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,16 @@ else
     echo -e "${BRIGHT_RED}Git is not installed.${RESET}"
     echo -e "${BRIGHT_YELLOW}Please install Git to your device.${RESET}"
     exit 1
+fi
+
+if command -v gcc > /dev/null 2>&1; then
+    echo -e "${BRIGHT_GREEN}Gcc is installed.${RESET}"
+    echo -e "${BRIGHT_YELLOW}Gcc version: $(git --version).${RESET}"
+else
+    echo -e "${BRIGHT_RED}Gcc is not installed.${RESET}"
+    echo -e "${BRIGHT_YELLOW}Trying to install gcc${RESET}"
+    sudo apt install gcc -y
+    echo -e "${BRIGHT_GREEN}Gcc is installed.${RESET}"
 fi
 
 # Pulling the mlx lib from linux
