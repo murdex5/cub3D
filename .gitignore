@@ -59,3 +59,6 @@ dkms.conf
 
 # mlx
 mlx/
+
+# libft
+libft/

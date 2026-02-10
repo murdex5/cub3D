@@ -6,7 +6,7 @@
 #    By: kadferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 12:05:49 by kadferna          #+#    #+#              #
-#    Updated: 2026/02/10 08:30:09 by kadferna         ###   ########.fr        #
+#    Updated: 2026/02/10 08:58:36 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,23 @@ else
     echo -e "${BRIGHT_CYAN}mlx does not exists.${RESET}"
     echo -e "${BRIGHT_CYAN}Cloning mlx from github...${RESET}"
     git clone https://github.com/42paris/minilibx-linux.git mlx
+fi
+
+if [ -d "$libft"  ]; then
+    echo -e "${BRIGHT_CYAN}libft directory exists.Checking if it's a valid git repository...${RESET}"
+    
+    if [ -d "$libft/.git" ]; then
+        echo -e "${BRIGHT_CYAN}libft is already a git repository nothing to do.${RESET}"
+    else 
+        echo -e "${BRIGHT_CYAN}libft exists but not a git repository${RESET}"
+        echo -e "${BRIGHT_YELLOW}Removing existing directory and cloning fresh...${RESET}"
+        rm -rf "$libft"
+        git clone git@github.com:murdex5/libft.git libft
+    fi
+else
+    echo -e "${BRIGHT_CYAN}libft does not exists.${RESET}"
+    echo -e "${BRIGHT_CYAN}Cloning libft from github...${RESET}"
+    git clone git@github.com:murdex5/libft.git libft
 fi
 
 # Compiling the prgrame
