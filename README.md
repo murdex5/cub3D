@@ -181,7 +181,7 @@ C 225,30,0
 - Invalid RGB color values (> 255)
 - Wrong texture file format (not `.xpm`)
 
-#### Note: The texture paths and color configs can be swaped but the map always should be the last.
+#### Note: The texture paths and colour configs can be swapped, but the map should be the last.
 
 ## 📁 Project Structure
 
