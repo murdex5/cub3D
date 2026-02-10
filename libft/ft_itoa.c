@@ -3,57 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:13:04 by msisto            #+#    #+#             */
-/*   Updated: 2024/01/25 09:55:15 by msisto           ###   ########.fr       */
+/*   Created: 2024/12/23 11:57:47 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/23 11:57:48 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
-#include <stdio.h>
 
-static int	size(int num)
+static int	get_digit(int nb)
 {
-	int	len;
+	int	digits;
 
-	len = 0;
-	if (num == 0)
-		len++;
-	if (num < 0)
-		len++;
-	while (num)
+	digits = 0;
+	if (nb <= 0)
 	{
-		len++;
-		num /= 10;
+		++digits;
+		nb = -nb;
 	}
-	return (len);
+	while (nb != 0)
+	{
+		digits++;
+		nb = nb / 10;
+	}
+	return (digits);
 }
 
-char	*ft_itoa(int n)
+static char	*allocate_mem(int len)
 {
-	char	*out;
+	char	*str;
+
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	return (str);
+}
+
+char	*return_min(void)
+{
+	char	*str;
+
+	str = malloc(12);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, "-2147483648", 12);
+	return (str);
+}
+
+char	*ft_itoa(int nb)
+{
+	char	*result;
 	int		len;
 
-	len = size(n);
-	out = ft_calloc(len + 1, sizeof(char));
-	if (!out)
+	if (nb == -2147483648)
+		return (return_min());
+	len = get_digit(nb);
+	result = allocate_mem(len);
+	if (!result)
 		return (NULL);
-	out[len] = '\0';
-	if (n < 0)
-		out[0] = '-';
-	else if (n < 10 && n >= 0)
+	result[len] = '\0';
+	if (nb == 0)
+		result[0] = '0';
+	if (nb < 0)
 	{
-		out[0] = n + 48;
-		return (out);
+		result[0] = '-';
+		nb = -nb;
 	}
-	while (len-- > 0 && n)
+	while (nb != 0)
 	{
-		if (n < 0)
-			out[len] = (-(n % 10)) + 48;
-		else
-			out[len] = (n % 10) + 48;
-		n /= 10;
+		--len;
+		result[len] = (nb % 10) + 48;
+		nb = nb / 10;
 	}
-	return (out);
+	return (result);
 }
+/*
+#include <stdlib.h>
+
+int	main(int ac, char **av)
+{
+	if (ac < 2)
+		return (1);           // Ensure a command-line argument is provided
+	int num = atoi(av[1]);    // Convert string to integer
+	char *str = ft_itoa(num); // Convert the number to a string
+	printf("%s\n", str);      // Print the result
+	free(str);                // Free the allocated memory
+	return (0);
+}
+*/

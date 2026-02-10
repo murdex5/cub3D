@@ -3,31 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 11:57:16 by msisto            #+#    #+#             */
-/*   Updated: 2024/01/15 13:40:47 by msisto           ###   ########.fr       */
+/*   Created: 2024/12/11 12:30:43 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 12:54:01 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	if (dst == src)
-		return (dst);
-	if ((unsigned char *)dst > (const unsigned char *)src)
+	size_t			i;
+	unsigned char	*s;
+	unsigned char	*d;
+
+	s = (unsigned char *)src;
+	d = (unsigned char *)dest;
+	if (dest == src)
+		return (dest);
+	i = -1;
+	if (s < d && s + n > d)
 	{
-		while (len-- > 0)
-		{
-			((unsigned char *)dst)[len] = ((const unsigned char *)src)[len];
-		}
+		while (++i < n)
+			d[n - 1 - i] = s[n - 1 - i];
 	}
 	else
 	{
-		dst = ft_memcpy(dst, src, len);
+		while (++i < n)
+			d[i] = s[i];
 	}
-	return (dst);
+	return (dest);
 }
+/*
+int	main(void)
+{
+	char	*str;
+	char	*dest;
+
+	str = "Hello, World!";
+	dest = malloc(sizeof(char *) * 13);
+	dest = ft_memmove(dest, str, 13);
+	printf("%s \n", dest);
+	free(dest);
+	return (0);
+}*/

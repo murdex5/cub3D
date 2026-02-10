@@ -3,25 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 10:26:42 by msisto            #+#    #+#             */
-/*   Updated: 2024/01/16 12:41:11 by msisto           ###   ########.fr       */
+/*   Created: 2024/12/11 11:02:58 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/11 11:12:21 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t			i;
-	int				d;
+	size_t	i;
 
 	i = 0;
-	d = 0;
-	if (!n)
-		return (d);
-	while (str1[i] == str2[i] && i < (n - 1) && str1[i] && str2[i])
+	if (n == 0)
+		return (0);
+	while (i < n && s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
-	return (((unsigned char *)str1)[i] - ((unsigned char *)str2)[i]);
+	}
+	if (i < n)
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
 }
+/*
+int	main(void)
+{
+	char	*str = "HELLO";
+	char	*s = "Apple";
+	printf("%d \n", ft_strncmp(str, s, 5));
+	return (0);
+}*/

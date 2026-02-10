@@ -3,20 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 14:48:03 by msisto            #+#    #+#             */
-/*   Updated: 2024/01/09 09:35:14 by msisto           ###   ########.fr       */
+/*   Created: 2024/12/09 16:37:20 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/09 16:45:14 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_isascii(int n)
+int	ft_isascii(int c)
 {
-	if (n >= 0 && n <= 127)
-	{
+	if (c >= 0 && c <= 127)
 		return (1);
-	}
 	return (0);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	if (ft_isascii(L'ø') == 0)
+		printf("ascii\n");
+	return 0;
+}*/

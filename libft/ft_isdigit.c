@@ -3,21 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msisto <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: kadferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/08 13:38:14 by msisto            #+#    #+#             */
-/*   Updated: 2024/01/15 13:51:11 by msisto           ###   ########.fr       */
+/*   Created: 2024/12/09 16:36:10 by kadferna          #+#    #+#             */
+/*   Updated: 2024/12/09 16:45:37 by kadferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_isdigit(int n)
+int	ft_isdigit(int c)
 {
-	if (n <= '9' && n >= '0')
-	{
-		return (1);
-	}
-	else
+	if (!(c >= '0' && c <= '9'))
 		return (0);
+	return (1);
 }
+/*
+#include <stdio.h>
+int main(int ac, char **av)
+{
+    if (ac != 2)
+        return 1;
+    else
+    {
+        if (ft_isdigit(av[1][0]) == 1)
+            printf("is digit\n");
+        else
+            printf("not digit\n");
+    }
+    return 0;
+}*/
