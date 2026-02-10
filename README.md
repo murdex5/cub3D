@@ -11,7 +11,7 @@
 
 *A simple 3D maze game engine built with ray-casting*
 
-[Features](#features) • [Installation](#installation) • [Usage](#usage) • [Map Format](#map-format) • [Controls](#controls)
+[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Map Format](#-map-format) • [Controls](#-controls)
 
 </div>
 
