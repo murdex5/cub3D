@@ -43,12 +43,29 @@ fi
 
 if command -v gcc > /dev/null 2>&1; then
     echo -e "${BRIGHT_GREEN}Gcc is installed.${RESET}"
-    echo -e "${BRIGHT_YELLOW}Gcc version: $(git --version).${RESET}"
 else
     echo -e "${BRIGHT_RED}Gcc is not installed.${RESET}"
     echo -e "${BRIGHT_YELLOW}Trying to install gcc${RESET}"
+    sudo apt-get update
     sudo apt install gcc -y
     echo -e "${BRIGHT_GREEN}Gcc is installed.${RESET}"
+fi
+
+# Installing other required libraies
+
+if command -v make > /dev/null 2>&1; then
+    echo -e "${BRIGHT_GREEN}Make is installed.${RESET}"
+else
+    echo -e "${BRIGHT_RED}Make is not installed.${RESET}"
+    sudo apt install make -y
+    echo -e "${BRIGHT_GREEN}Make is installed.${RESET}"
+fi
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    echo -e "${BRIGHT_YELLOW}Installing other required libraris${RESET}"
+    sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev -y
+else
+    echo -e "${BRIGHT_YELLOW}This os linux moving on..${RESET}"
 fi
 
 # Pulling the mlx lib from linux
