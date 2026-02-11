@@ -66,6 +66,9 @@ If you prefer manual installation:
 git clone https://github.com/murdex5/cub3D.git
 cd cub3D
 
+# Install the required dependencies
+sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+
 # Clone the minilibx from github
 git clone https://github.com/42paris/minilibx-linux.git mlx
 
