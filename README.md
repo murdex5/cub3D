@@ -21,6 +21,8 @@
 
 **Cub3D** is a 42 school project inspired by the legendary **Wolfenstein 3D** game. This project implements a 3D maze game engine using **ray-casting** techniques with the **MiniLibX** graphics library. Navigate through custom maze environments rendered in real-time with textured walls, floor, and ceiling colors.
 
+#### Note: As for the new curriculem make sure to create and add your README file to the project.
+
 ## ✨ Features
 
 - 🎯 **Ray-casting rendering engine** - Real-time 3D visualization from a 2D map
