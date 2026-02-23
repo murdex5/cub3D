@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:33:12 by msisto            #+#    #+#             */
-/*   Updated: 2026/01/13 13:33:38 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/16 12:52:34 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	err_msg_std(char *msg)
 {
-	ft_putstr_fd("Error \n", 1);
+	ft_putstr_fd(RED"Error \n"RESET, 1);
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd("\n", 1);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 13:46:55 by msisto            #+#    #+#             */
-/*   Updated: 2026/01/30 15:04:48 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/16 12:32:53 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	on_key_press_exit(t_data *data, int lvl)
 
 int	quit(t_data *data)
 {
+	printf(GREEN "leaving the game\n" RESET);
 	free_exit(data, 3, NULL);
 	return (0);
 }

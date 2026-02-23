@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 14:22:35 by msisto            #+#    #+#             */
-/*   Updated: 2026/01/19 14:41:34 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/12 12:25:13 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int	count_lines(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("cub3D");
-		exit(0);
-	}
+		return (0);
 	lines = 0;
 	line = get_next_line(fd);
 	while (line != NULL)

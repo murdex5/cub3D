@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 13:01:56 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/06 14:41:53 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/16 12:35:18 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	img_setup(t_data *data, t_img *image, int width, int height)
 	init_img_clean(image);
 	image->img = mlx_new_image(data->mlx, width, height);
 	if (image->img == NULL)
-		free_exit(data, 3, "Error\nCould not create mlx img");
+		free_exit(data, 3, RED"Error\nCould not create mlx img"RESET);
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);
 	return ;
@@ -38,7 +38,7 @@ void	init_texture_img(t_data *data, t_img *image, char *path)
 	image->img = mlx_xpm_file_to_image(data->mlx, path, &data->texture.size,
 			&data->texture.size);
 	if (image->img == NULL)
-		free_exit(data, 3, "Error\nCould not create mlx img");
+		free_exit(data, 3, RED"Error\nCould not create mlx img"RESET);
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);
 	return ;
@@ -48,9 +48,9 @@ void	mlx_setup(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		free_exit(data, 1, "Error\nCould not start mlx");
+		free_exit(data, 1, RED"Error\nCould not start mlx"RESET);
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data->win)
-		free_exit(data, 1, "Error\nCould not create mlx window");
+		free_exit(data, 1, RED"Error\nCould not create mlx window"RESET);
 	return ;
 }

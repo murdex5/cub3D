@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 11:28:40 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/06 15:15:59 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/09 12:17:32 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	assign_colors(t_texture *tex, char *line)
 	char	**split_result;
 
 	split_result = ft_split(line, ' ');
-	if (split_result[0][0] == 'C')
+	if (!tex->ceiling && split_result[0][0] == 'C')
 		tex->ceiling = get_color(split_result[1]);
-	else
+	else if (!tex->floor && split_result[0][0] == 'F')
 		tex->floor = get_color(split_result[1]);
 	free_tab((void **)split_result);
 }

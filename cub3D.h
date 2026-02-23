@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 11:25:31 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/06 14:50:04 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/16 13:08:35 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 
+# define RED	"\e[31m"
+# define GREEN	"\e[32m"
+# define RESET	"\e[0m"
+
 # define WIN_HEIGHT 720
 # define WIN_WIDTH 960
 
@@ -34,7 +38,6 @@
 # define MOVSPEED 0.015
 
 # define ERR_MSG "Error\nFailed to Populate.check File Paths Or Colour inputs\n"
-# define COLOR_MSG "err_files/color_order.txt"
 # define TEXTURE_MSG "err_files/texture_order.txt"
 # define MAP_MSG "err_files/map_order.txt"
 # define EXPECTED_MSG "err_files/expected_format.txt"
@@ -118,6 +121,7 @@ typedef struct s_map
 	int			height;
 	int			lst_itr;
 	int			content_order;
+	int			player_count;
 }				t_map;
 
 typedef struct s_data
@@ -147,12 +151,10 @@ int				has_holes(char **map);
 int				check_file_type(char *file, char *type);
 int				check_instances(char *line);
 int				check_zero(char **map, int k);
-int				check_holes(char **map, char *line, int k);
 
 /*init*/
 
 /*datasetup.c*/
-void			clear_img_setup(t_img *img);
 void			map_setup(t_map *map_info);
 void			ray_set(t_ray *ray);
 void			player_setup(t_player *player);
@@ -206,7 +208,7 @@ void			assign_paths(char **content, int i, t_texture *textures);
 void			get_text_path(t_data *data, t_map *map, t_texture *texture);
 void			parse_textures(t_data *data);
 /*parse_player.c*/
-void			get_player_pos_pl(t_player *player, char **map);
+void			player_pos(t_map *map_info, t_player *player, char **map);
 void			parse_player(t_data *data);
 
 /*utils*/
@@ -247,7 +249,6 @@ int				err_msg_std(char *msg);
 /*detailed_errors.c*/
 int				read_files(char *file);
 void			detailed_err_msg_order(char *path);
-void			mulitiple_de_msg(char *path1, char *path2);
 
 /*movement*/
 

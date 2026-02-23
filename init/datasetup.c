@@ -6,20 +6,11 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 12:15:04 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/02 12:58:13 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/09 12:35:01 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
-
-void	clear_img_setup(t_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-	img->pixel_bits = 0;
-	img->size_line = 0;
-	img->endian = 0;
-}
 
 void	map_setup(t_map *map_info)
 {
@@ -28,6 +19,7 @@ void	map_setup(t_map *map_info)
 	map_info->width = 0;
 	map_info->lst_itr = 0;
 	map_info->content_order = 0;
+	map_info->player_count = 0;
 }
 
 void	ray_set(t_ray *ray)

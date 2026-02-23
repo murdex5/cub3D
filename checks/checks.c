@@ -6,7 +6,7 @@
 /*   By: msisto <msisto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 12:29:42 by msisto            #+#    #+#             */
-/*   Updated: 2026/02/04 17:24:47 by msisto           ###   ########.fr       */
+/*   Updated: 2026/02/16 12:08:16 by msisto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,34 +73,8 @@ int	check_zero(char **map, int k)
 				return (0);
 			if (i > 0 && (map[k][i - 1] == ' ' || map[k][i - 1] == '\n'))
 				return (0);
-			if (i < ft_strlen(map[k]) && (map[k][i + 1] == ' ' || map[k][i + 1] == '\n'))
-				return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	check_holes(char **map, char *line, int k)
-{
-	size_t	i;
-	size_t	str_len;
-	size_t	prev_len;
-	size_t	next_len;
-
-	if (k <= 0 || !map[k - 1] || !map[k + 1])
-		return (1);
-	i = 0;
-	str_len = ft_strlen(line);
-	prev_len = ft_strlen(map[k - 1]);
-	next_len = ft_strlen(map[k + 1]);
-	while (i < str_len)
-	{
-		if (line[i] == ' ')
-		{
-			if (i < prev_len && i < next_len && (map[k - 1][i] == '0' || map[k
-					- 1][i] == '1') && (map[k + 1][i] == '0' || map[k
-					+ 1][i] == '1'))
+			if (i < ft_strlen(map[k]) && (map[k][i + 1] == ' '
+				|| map[k][i + 1] == '\n'))
 				return (0);
 		}
 		i++;
