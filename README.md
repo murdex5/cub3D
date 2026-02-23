@@ -285,7 +285,7 @@ This project is part of the 42 school curriculum.
 
 <div align="center">
 
-### 🎯 42 Project Score: Waiting for evaluation
+### 🎯 42 Project Score: 100!!
 
 *If you found this project helpful, consider giving it a ⭐!*
 
