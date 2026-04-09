@@ -6,7 +6,7 @@
 #    By: kadferna <kadferna@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/10 00:00:56 by kadferna          #+#    #+#              #
-#    Updated: 2026/04/10 00:24:43 by kadferna         ###   ########.fr        #
+#    Updated: 2026/04/10 01:14:41 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,3 +50,6 @@ fi
 
 cd $cub
 bash ./install.sh
+goto() {
+    cd $cub || return
+}
