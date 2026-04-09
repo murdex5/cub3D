@@ -6,7 +6,7 @@
 #    By: kadferna <kadferna@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 12:05:49 by kadferna          #+#    #+#              #
-#    Updated: 2026/04/10 00:55:47 by kadferna         ###   ########.fr        #
+#    Updated: 2026/04/10 00:59:41 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,10 @@ else
     echo -e "${BRIGHT_YELLOW}This is totally fine. Password is requred to install program/libraris${RESET}"
     echo -e "${BRIGHT_YELLOW}Check ./install.sh or ./git.install.sh if you are unsure${RESET}"
     echo -e "${BRIGHT_YELLOW} Or you can do the manual installation. *Check README on github*${RESET}"
-    sudo apt-get update
-    sudo apt install gcc -y
+    sudo apt-get update && sudo apt install gcc -y
+    if [ ! $? -eq 0 ]; then
+        echo -e "${BRIGHT_RED}Instalation failed!${RESET}"
+        exit 1
     echo -e "${BRIGHT_GREEN}Gcc is installed.${RESET}"
 fi
 
@@ -66,6 +68,9 @@ else
     echo -e "${BRIGHT_YELLOW}Check ./install.sh or ./git.install.sh if you are unsure${RESET}"
     echo -e "${BRIGHT_YELLOW} Or you can do the manual installation. *Check README on github*${RESET}"
     sudo apt install make -y
+    if [ ! $? -eq 0 ]; then
+        echo -e "${BRIGHT_RED}Instalation failed!${RESET}"
+        exit 1
     echo -e "${BRIGHT_GREEN}Make is installed.${RESET}"
 fi
 
@@ -76,6 +81,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo -e "${BRIGHT_YELLOW}Check ./install.sh or ./git.install.sh if you are unsure${RESET}"
     echo -e "${BRIGHT_YELLOW} Or you can do the manual installation. *Check README on github*${RESET}"
     sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev -y
+    if [ ! $? -eq 0 ]; then
+        echo -e "${BRIGHT_RED}Instalation failed!${RESET}"
+        exit 1
 else
     echo -e "${BRIGHT_YELLOW}This os linux moving on..${RESET}"
 fi
