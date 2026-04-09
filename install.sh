@@ -6,7 +6,7 @@
 #    By: kadferna <kadferna@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 12:05:49 by kadferna          #+#    #+#              #
-#    Updated: 2026/04/10 01:05:19 by kadferna         ###   ########.fr        #
+#    Updated: 2026/04/10 01:07:55 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ else
     if [ ! $? -eq 0 ]; then
         echo -e "${BRIGHT_RED}Instalation failed!${RESET}"
         exit 1
+    fi
     echo -e "${BRIGHT_GREEN}Gcc is installed.${RESET}"
 fi
 
@@ -71,6 +72,7 @@ else
     if [ ! $? -eq 0 ]; then
         echo -e "${BRIGHT_RED}Instalation failed!${RESET}"
         exit 1
+    fi
     echo -e "${BRIGHT_GREEN}Make is installed.${RESET}"
 fi
 
@@ -85,6 +87,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if [ ! $? -eq 0 ]; then
         echo -e "${BRIGHT_RED}Instalation failed!${RESET}"
         exit 1
+    fi
 else
     echo -e "${BRIGHT_YELLOW}This OS is not linux moving on..${RESET}"
 fi
