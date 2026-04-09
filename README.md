@@ -45,6 +45,11 @@
 
 ### Quick Install
 
+```bash
+curl -sSL https://raw.githubusercontent.com/murdex5/cub3D/refs/heads/main/git.install.sh | bash
+```
+#### OR
+
 Clone the repository and run the automated installation script:
 
 ```bash
