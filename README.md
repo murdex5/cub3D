@@ -43,7 +43,7 @@
 - **X11** libraries (for MiniLibX)
 - **Git**
 
-### Quick Install
+### Quick Install (Linux Only)
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/murdex5/cub3D/refs/heads/main/git.install.sh | bash
@@ -69,7 +69,7 @@ The script will:
 If you prefer manual installation:
 
 ```bash
-# Install the required dependencies
+# Install the required dependencies (Linux Only)
 sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 
 # Clone the repository
