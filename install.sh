@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    install.sh                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kadferna <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: kadferna <kadferna@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 12:05:49 by kadferna          #+#    #+#              #
-#    Updated: 2026/02/10 08:58:36 by kadferna         ###   ########.fr        #
+#    Updated: 2026/04/10 00:55:47 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,10 @@ if command -v gcc > /dev/null 2>&1; then
 else
     echo -e "${BRIGHT_RED}Gcc is not installed.${RESET}"
     echo -e "${BRIGHT_YELLOW}Trying to install gcc${RESET}"
+    echo -e "${BRIGHT_RED}You may be asked to put your password.${RESET}"
+    echo -e "${BRIGHT_YELLOW}This is totally fine. Password is requred to install program/libraris${RESET}"
+    echo -e "${BRIGHT_YELLOW}Check ./install.sh or ./git.install.sh if you are unsure${RESET}"
+    echo -e "${BRIGHT_YELLOW} Or you can do the manual installation. *Check README on github*${RESET}"
     sudo apt-get update
     sudo apt install gcc -y
     echo -e "${BRIGHT_GREEN}Gcc is installed.${RESET}"
@@ -57,12 +61,20 @@ if command -v make > /dev/null 2>&1; then
     echo -e "${BRIGHT_GREEN}Make is installed.${RESET}"
 else
     echo -e "${BRIGHT_RED}Make is not installed.${RESET}"
+    echo -e "${BRIGHT_RED}You may be asked to put your password.${RESET}"
+    echo -e "${BRIGHT_YELLOW}This is totally fine. Password is requred to install program/libraris${RESET}"
+    echo -e "${BRIGHT_YELLOW}Check ./install.sh or ./git.install.sh if you are unsure${RESET}"
+    echo -e "${BRIGHT_YELLOW} Or you can do the manual installation. *Check README on github*${RESET}"
     sudo apt install make -y
     echo -e "${BRIGHT_GREEN}Make is installed.${RESET}"
 fi
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo -e "${BRIGHT_YELLOW}Installing other required libraris${RESET}"
+    echo -e "${BRIGHT_RED}You may be asked to put your password.${RESET}"
+    echo -e "${BRIGHT_YELLOW}This is totally fine. Password is requred to install program/libraris${RESET}"
+    echo -e "${BRIGHT_YELLOW}Check ./install.sh or ./git.install.sh if you are unsure${RESET}"
+    echo -e "${BRIGHT_YELLOW} Or you can do the manual installation. *Check README on github*${RESET}"
     sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev -y
 else
     echo -e "${BRIGHT_YELLOW}This os linux moving on..${RESET}"
