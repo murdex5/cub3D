@@ -6,7 +6,7 @@
 #    By: kadferna <kadferna@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/26 12:05:49 by kadferna          #+#    #+#              #
-#    Updated: 2026/04/13 01:08:43 by kadferna         ###   ########.fr        #
+#    Updated: 2026/04/13 01:15:32 by kadferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,9 @@ if $(sudo -l &> /dev/null); then
     fi
 else
     echo -e "${BRIGHT_YELLOW}This user does not have any sudo permissons.${RESET}"
-    echo -e "${BRIGHT_YELLOW}Continuig the instilation${RESET}"
+    echo -e "${BRIGHT_YELLOW}If this is a 42 campus computer this is totally fine.${RESET}"
+    echo -e "${BRIGHT_YELLOW}Otherwise run this with a sudo user.${RESET}"
+    echo -e "${BRIGHT_YELLOW}Continiuing the installation${RESET}"
 fi
 
 # Pulling the mlx lib from linux
